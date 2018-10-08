@@ -1,0 +1,31 @@
+<section class="container box_point">
+	<table class="tbl_summary">
+		<caption class="sound_only">잔여 포인트</caption>
+		<tbody>
+			<tr>
+				<td>잔여 포인트</td>
+				<td></td>
+				<td>
+					<span id="span_total_point" class="txt_red"></span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<table>
+		<caption class="sound_only">포인트 증감 내역</caption>
+		<thead>
+			<tr>
+				<th>일시</th>
+				<th>활동</th>
+				<th>획득 포인트</th>
+			</tr>
+		</thead>
+		<tbody id="tbody">
+			<tr item_template="item">
+				<td>:date</td>
+				<td>:type</td>
+				<td class="point_var">:point</td>
+			</tr>
+		</tbody>
+	</table>
+</section>

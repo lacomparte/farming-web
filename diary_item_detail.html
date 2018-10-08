@@ -1,0 +1,70 @@
+<section class="container ul_diary_list diary_item_detail">
+	<div id="div_diary_item" class="diary_list">
+		<!-- 선택된 일지의 상세 내용이 표시되는 부분, diary_item.html이 이 element 안쪽으로 삽입됨 -->
+		<!-- 게시물 상세보기를 위해 사용된다면 게시물의 상세 내용이 표시되는 부분, community_post_item.html이 이 element 안쪽으로 삽입됨 -->
+	</div>
+	<form id="form_comment" class="form_comment" user_only>
+		<!-- 일지 댓글 입력 폼 -->
+		<div class="box_inp box_comment">
+			<textarea  id="input_comment" placeholder="댓글을 입력하세요" class="input_reply inp_100 inp_comment"></textarea>
+		</div>
+		<div class="box_submit clear">
+			<button type="submit" class="btn_com btn_type01 btn_100">게시</button>
+		</div>
+	</form>
+	<ul id="ul_comment" class="ul_comment_d1">
+		<!-- 댓글 목록 -->
+		<li item_template="item">
+			<div id="div_current_comment">
+				<div class="box_user">
+					<a id="button_user">
+						<img id="img_user_profile" class="img_user_profile">	
+						<span id="span_user_nick" class="span_user_nick"></span>
+					</a>
+				</div>
+				<div class="box_comment_content">
+					<p id="p_text" class="p_text">
+						<!-- 댓글 내용 -->
+					</p>
+					<form id="form_edit_comment" class="form_edit_comment hidden">
+						<!-- 댓글 수정용 폼 -->
+						<div class="box_inp box_comment">
+							<textarea id="input_edit_comment" placeholder="댓글을 입력하세요" class="input_reply inp_100 inp_comment"></textarea>
+						</div>
+						<div class="box_modify btn_half clear">
+							<button id="button_cancel_edit" type="button" class="btn_com btn_type02 btn_50">취소</button>
+							<button type="submit" class="btn_com btn_type01 btn_50">수정</button>
+						</div>
+					</form>
+					<div id="div_date" class="div_date"></div>
+					<div class="box_user_action">
+						<a id="button_emotion">좋아요</a>
+						<span id="span_emotion" class="span_emotion">
+							<a id="button_emotion_count">
+								| <img id="img_emotion" class="img_emotion" src="images/icon_like.png">
+								<span id="span_emotion_count" class="span_emotion_count"></span>
+							</a>
+						</span>
+						|
+						<a id="button_reply">댓글 달기</a>
+					</div>
+					<div id="div_owner" class="div_owner">
+						<button id="button_menu" type="button"><i class="fa fa-ellipsis-v"></i><span class="sound_only">메뉴</span></button>
+					</div>
+					<form id="form_reply" class="form_reply hidden">
+						<!-- 댓글의 댓글(답글)을 입력하기 위한 폼 -->
+						<div class="box_inp box_comment">
+							<textarea id="input_edit_comment" placeholder="댓글을 입력하세요" class="input_reply inp_100 inp_comment"></textarea>
+						</div>
+						<div class="box_submit btn_wrap clear">
+							<button type="submit" class="btn_com btn_type01 btn_100">게시</button>
+						</div>
+					</form>
+				</div>
+			</div>
+			<ul id="ul_reply" class="ul_comment_d2">
+				<!-- 댓글의 댓글(답글) 목록 -->
+			</ul>
+		</li>
+	</ul>
+</section>

@@ -1,0 +1,42 @@
+<section class="container box_accounting_list">
+	<div id="div_filter">
+		<div id="box_my_filter" class="clear">
+			<button type="button" id="button_select_farm">농장 선택</button>
+			<button type="button" id="button_select_crop">작물 선택</button>
+			<button type="button" id="button_select_type">유형 선택</button>
+		</div>
+		<ul id="ul_selected_filter_items" class="clear">
+			<li item_template="item">:name <i class="fa fa-close"></i></li>
+		</ul>
+	</div>
+	<div class="div_date_range clear">
+		<input id="button_date_range_start" type="text" readonly="readonly" size="10" maxlength="11" class="inp_com" placeholder="과거 날짜" readonly="readonly">
+		<span class="txt_unit">~</span>
+		<input id="button_date_range_end" type="text" readonly="readonly" size="10" maxlength="11" class="inp_com" placeholder="최근 날짜" readonly="readonly">
+		<select id="select_sort"></select>
+	</div>
+	<div class="summary_accounting">
+		<table>
+			<caption class="sound_only">총수입, 총지출, 잔액요약</caption>
+			<thead>
+				<tr>
+					<th>총 수입</th>
+					<th>총 지출</th>
+					<th>잔액</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td id="dd_income"></td>
+					<td id="dd_outgo"></td>
+					<td id="dd_balance"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<ul id="ul_accounting_list" class="ul_diary_list">
+		<li item_template="item" class="diary_list">
+			<include src="accounting_list_item"/>
+		</li>
+	</ul>
+</section>

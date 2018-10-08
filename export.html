@@ -1,0 +1,96 @@
+<li class="box_def">	
+	<label class="clear">
+		<span class="lb_title">
+			<span>
+				<i class="fa fa-leaf"></i>
+			</span>
+			출하작물
+		</span>
+		<span class="box_def_content">
+			<select id="select_crop" class="sel_100"></select>	
+		</span>
+	</label>
+</li>
+<li class="box_def">	
+	<label class="clear">
+		<span class="lb_title">
+			<span>
+				<i class="fa fa-globe"></i>
+			</span>
+			출하처	
+		</span>
+		<span class="box_def_content clear">
+			<select id="select_destination" class="sel_100"></select>
+		</span>
+	</label>
+	<span class="box_def_content clear">
+		<div class="clear btn_half">
+			<select id="select_market" class="sel_50"></select>
+			<select id="select_co" class="sel_50"></select>
+		</div>
+	</span>
+</li>
+<li class="box_def">
+	<label class="clear">
+		<span class="lb_title">
+			<span>
+				<i class="fa fa-cubes"></i>
+			</span>
+			출하량 단위	
+		</span>
+		<span class="box_def_content clear">
+			<input type="text" id="input_qty_size" size="5" class="inp_com inp_30" pattern_type="float">
+		</span>
+	</label>
+	<span class="box_def_content clear multi btn_half">
+		<div class="clear">
+			<select id="select_qty_weight_unit" class="sel_50"></select>
+			<select id="select_qty_type" class="sel_50"></select>	
+		</div>
+	</span>
+</li>
+<li class="box_def">
+	<label class="clear">
+		<span class="lb_title">
+			<span>
+				<i class="fa fa-truck"></i>
+			</span>
+			출하량
+		</span>
+		<span class="box_def_content">
+			<input type="text" id="input_qty" class="inp_com inp_100" pattern_type="float"><span class="txt_unit">개</span>
+		</span>	
+	</label>
+</li>
+<li class="box_def">
+	<label class="clear">
+		<span class="lb_title">
+			<span>
+				<i class="fa fa-bookmark"></i>
+			</span>
+			등급
+		</span>
+		<span class="box_def_content">
+			<select id="select_grade" class="sel_100"></select>
+		</span>
+	</label>
+</li>
+<li class="box_def">
+	<label class="clear">
+		<span class="lb_title">
+			<span>
+				<i class="fa fa-won"></i>
+			</span>
+			단위가격
+		</span>
+		<span class="box_def_content">
+			<input type="text" id="input_price" class="inp_com inp_100" pattern_type="float"><span class="txt_unit">원</span>
+		</span>	
+	</label>
+</li>
+<li class="box_def box_btn">
+	<div class="clear btn_half">
+		<button type="button" id="button_remove" class="btn_com btn_type02 btn_50">출하 제거</button>
+		<button type="button" id="button_add" class="btn_com btn_type01 btn_50">출하 추가</button>
+	</div>
+</li>

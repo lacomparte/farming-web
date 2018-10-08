@@ -1,0 +1,45 @@
+<section class="container box_diary_content_mgmt">
+	<ul>
+		<li class="box_def">
+			<label class="clear multi_label">
+				<span class="lb_title">
+					<span>
+						<i class="fa fa-object-group"></i>
+					</span>
+					면적	
+				</span>
+				<span class="box_def_content">
+					<input type="text" id="input_area" size="10" placeholder="면적을 입력해주세요." class="inp_com inp_100" pattern_type="float">
+				</span>
+			</label>
+			<span class="box_def_content multi_span">
+				<select id="select_area_unit" class="sel_100"></select>
+			</span>
+		</li>
+		<li id="div_used_amount_water" class="box_def">
+			<label class="clear multi_label">
+				<span class="lb_title">
+					<span>
+						<i class="fa fa-shower"></i>
+					</span>
+					총 사용량(물)	
+				</span>
+				<span class="box_def_content">
+					<input type="text" id="input_used_amount_water" size="10" placeholder="총 사용량(물)을 입력해주세요." class="inp_com inp_100" pattern_type="float">
+				</span>
+			</label>
+			<span class="box_def_content multi_span">
+				<select id="select_used_amount_water_unit" class="sel_100"></select>
+			</span>
+		</li>
+	</ul>
+	<ul id="ul_mgmts">
+		<!-- 자재 사용 입력 폼, <li>는 mgmt.html -->
+	</ul>
+	<include src="diary_content_privacy" />
+	<include src="diary_content_memo" />
+	<include src="diary_content_image_attach" />
+	<div class="btn_wrap">
+		<button id="button_submit" class="btn_com btn_type01 btn_100">완료</button>
+	</div>
+</section>

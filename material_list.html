@@ -1,0 +1,28 @@
+<section class="container box_material_list">
+	<div class="box_sch">
+		<ul id="ul_material" class="ul_search_object ul_sch">
+			<li item_template="item">
+				<span class="li_sch clear">
+					<div class="li_material_name li_object_name">
+						<span>:brand</span>
+						<span id="span_material_category_purpose">:
+							:materialPurpose(:materialCategory)
+						</span>
+						<span id="span_manufacturer">:
+							:manufacturer
+						</span>	
+					</div>
+					<div class="li_material_btn clear">
+						<button type="button" id="button_menu" class="button_menu">
+							<i class="fa fa-ellipsis-v"></i>
+						</button>
+						<button type="button" id="button_detail" class="button_detail btn_com btn_type02">상세내용</button>
+					</div>
+				</span>
+				<div id="div_detail" class="div_detail hidden">
+					<dl id="dl_detail" class="dl_detail clear"></dl>
+				</div>
+			</li>
+		</ul>
+	</div>
+</section>

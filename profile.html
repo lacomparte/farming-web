@@ -1,0 +1,80 @@
+<section class="container box_profile">
+	<form id="form_profile">
+		<div class="box_user_pic">
+			<button id="button_profile_image" type="button">
+				<img id="img_profile_image" class="img_thumbnail">
+			</button>
+			<input type="file" id="input_file" accept="image/*" class="hidden">
+		</div>
+		<ul>
+			<li class="box_def">
+				<label>
+					<span class="lb_title">
+						<span>
+							<i class="fa fa-user-circle"></i>
+						</span>
+						이름
+					</span>
+					<span class="box_def_content">
+						<input type="text" id="input_name" maxlength="20" class="inp_com inp_100" placeholder="이름">
+					</span>
+				</label>
+			</li>
+			<li class="box_def">
+				<label>
+					<span class="lb_title">
+						<span>
+							<i class="fa fa-bullhorn"></i>
+						</span>
+						닉네임 *
+					</span>
+					<span class="box_def_content">
+						<input type="text" id="input_nick" maxlength="20" class="inp_com inp_100" placeholder="닉네임">
+					</span>
+				</label>
+			</li>
+			<li class="box_def">
+				<label>
+					<span class="lb_title">
+						<span>
+							<i class="fa fa-home"></i>
+						</span>
+						농장이름
+					</span>
+					<span class="box_def_content">
+						<input type="text" id="input_farm_name" maxlength="50" class="inp_com inp_100" placeholder="농장이름">
+					</span>
+				</label>
+			</li>
+			<li class="box_def">
+				<label>
+					<span class="lb_title">
+						<span>
+							<i class="fa fa-envelope-open-o"></i>
+						</span>
+						이메일
+					</span>
+					<span class="box_def_content">
+						<button id="button_email" type="button" class="btn_com btn_type02 btn_100"></button>
+						<div id="div_email_auth_info" class="hidden">
+							<p>
+								현재 등록된 이메일은 <b>아직 인증되지 않았습니다.</b><br>
+								이메일에 도착된 파밍노트 인증 메일을 확인해주시기 바랍니다.<br>
+								인증 메일을 다시 받으시려면 아래의 버튼을 클릭해주십시오.
+							</p>
+							<button id="button_request_email_auth" type="button" class="btn_com btn_type01 btn_50">인증메일 다시 받기</button>
+						</div>
+					</span>
+				</label>
+			</li>
+		</ul>
+		<div class="btn_wrap">
+			<button type="submit" class="btn_com btn_type01 btn_100">완료</button>
+		</div>
+	</form>
+
+	<div id="div_email_dialog">
+		<!-- div_email_dialog는 dialog에 사용될 element이다. 페이지를 구성하지는 않고 제거됨 -->
+		<input id="input_email" type="text" size="10" class="inp_com inp_100" placeholder="이메일 주소를 입력해주십시오.">
+	</div>
+</section>

@@ -1,0 +1,85 @@
+<section class="container box_search_diary">
+	<form id="form_search">
+		<ul>
+			<li class="box_def">
+				<label>
+					<span class="lb_title">
+						<span>
+							<i class="fa fa-terminal"></i>
+						</span>
+						검색어
+					</span>
+					<span class="box_def_content">
+						<input id="input_keyword" type="text" size="5" maxlength="50" placeholder="검색어를 입력해주세요." class="inp_com inp_100">
+					</span>
+				</label>
+			</li>
+			<li class="box_def">
+				<label>
+					<span class="lb_title">
+						<span>
+							<i class="fa fa-arrows-h"></i>
+						</span>
+						검색 범위	
+					</span>
+					<span class="box_def_content">
+						<select id="select_diary_list_type" class="sel_100"></select>	
+					</span>
+					
+				</label>
+			</li>
+			<li class="box_def">
+				<label class="multi_label">
+					<span class="lb_title">
+						<span>
+							<i class="fa fa-calendar"></i>
+						</span>
+						기간	
+					</span>
+					<span class="box_def_content box_sch_period">
+						<input id="button_date_range_start" type="text" placeholder="과거 날짜" class="inp_com inp_100" readonly="readonly">
+						
+					</span>
+				</label>
+				<span class="box_def_content multi_span">
+					<span class="txt_unit" style="left:0; width:7.5%;">~</span>
+					<input id="button_date_range_end" type="text" placeholder="최근 날짜" class="inp_com inp_100" readonly="readonly">	
+				</span>
+			</li>
+			<li class="box_def">
+				<label>
+					<span class="lb_title">
+						<span>
+							<i class="fa fa-folder-o"></i>
+						</span>
+						일지유형	
+					</span>
+					<span class="box_def_content btn_wrap">
+						<button type="button" id="button_diary_type" class="btn_com btn_type02 btn_100">선택</button>	
+					</span>
+				</label>
+			</li>
+			<li class="box_def">
+				<span class="lb_title">
+					<span>
+						<i class="fa fa-sort-amount-asc"></i>
+					</span>
+					정렬	
+				</span>
+				<span class="box_def_content clear">
+					<label class="box_align_period">
+						<input type="radio" name="sort" value="0" checked="true"> 
+						<span>최근 ~ 과거</span>
+					</label>
+					<label class="box_align_period">
+						<input type="radio" name="sort" value="1">
+						<span>과거 ~ 최근</span>
+					</label>	
+				</span>
+			</li>
+		</ul>
+		<div class="btn_wrap">
+			<input type="submit" value="검색" class="inp_b_com inp_type01 inp_100">
+		</div>
+	</form>
+</section>

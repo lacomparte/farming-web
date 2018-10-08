@@ -1,0 +1,46 @@
+<section class="container box_add_farm">
+	<article id="article_search_address" class="box_sch">	
+		<form id="form_search_address">
+			<fieldset>
+				<legend>주소 검색</legend>
+				<input id="input_address" type="text" placeholder="읍,면,동과 이후 주소를 입력해주세요." class="inp_com inp_100">
+				<input type="submit" value="검색" class="inp_b_com inp_type02">
+				<!-- 
+				<img src="http://maps.gstatic.com/mapfiles/api-3/images/powered-by-google-on-white2.png">
+				-->
+			</fieldset>
+		</form>
+
+		<fieldset id="fieldset_address_list" class="hidden">
+			<legend>검색된 주소 목록</legend>
+			<ul id="ul_address" class="ul_sch">
+				<li item_template="item">
+					<p class="li_sch">:address</p>
+				</li>
+			</ul>
+		</fieldset>
+	</article>
+
+	<div id="div_detail_address">
+		<!-- div_detail_address는 dialog에 사용될 element이다. 페이지를 구성하지는 않고 제거됨 -->
+		<input id="input_detail_address" type="text" size="10" class="inp_com inp_100" placeholder="농장 주소를 입력해주십시오.">
+	</div>
+
+	<article id="article_area" class="box_inp_area hidden">
+		<p id="p_detail_address">
+			<!-- 사용자가 입력한 농장 주소 텍스트 들어오는 태그:p -->
+		</p>
+		<form id="form_area">
+			<fieldset>
+				<legend>면적</legend>
+				<div class="clear">
+					<input id="input_area" type="text" placeholder="농장 면적" class="inp_com inp_100" pattern_type="float">	
+					<select id="select_area_unit"></select>
+				</div>
+				<div class="btn_wrap">
+					<input type="submit" value="등록" class="inp_b_com inp_type01 inp_100">
+				</div>
+			</fieldset>
+		</form>
+	</article>
+</section>

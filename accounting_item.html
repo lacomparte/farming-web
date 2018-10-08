@@ -1,0 +1,79 @@
+<section class="container">
+	<form id="form_accounting">
+		<ul>
+			<li class="box_def">
+				<label>
+					<span class="lb_title">
+						<span>
+							<i class="fa fa-calendar-check-o"></i>
+						</span>
+						날짜
+					</span>
+					<span class="box_def_content">
+						<input type="text" id="input_date" size="8" maxlength="11" placeholder="날짜 선택" class="inp_com inp_100">
+					</span>
+				</label>
+			</li>
+			<li class="box_def" id="li_material">
+				<label>
+					<span class="lb_title">
+						<span>
+							<i class="fa fa-terminal"></i>
+						</span>
+						자재 이름
+					</span>
+					<span class="box_def_content btn_half clear" style="margin-top:0;">
+						<button type="button" id="button_search_material" class="btn_com btn_type02 btn_50">
+							자재 찾기
+						</button>
+						<button type="button" id="button_recent_material" class="btn_com btn_type02 btn_50">
+							최근 사용
+						</button>
+					</span>
+				</label>
+			</il>
+			<li class="box_def" id="li_subtype">
+				<label>
+					<span class="lb_title">
+						<span>
+							<i class="fa fa-sitemap"></i>
+						</span>
+						세부 항목
+					</span>
+					<span class="box_def_content">
+						<select id="select_subtype" class="sel_100"></select>
+					</span>
+				</label>
+			</il>
+			<li class="box_def">
+				<label>
+					<span class="lb_title">
+						<span>
+							<i class="fa fa-won"></i>
+						</span>
+						금액
+					</span>
+					<span class="box_def_content">
+						<input type="text" id="input_cost" size="6" class="inp_com inp_100" pattern_type="float"><span class="txt_unit">원</span>
+					</span>
+				</label>
+			</li>
+			<li class="box_def">
+				<label>
+					<span class="lb_title">
+						<span>
+							<i class="fa fa-globe"></i>
+						</span>
+						사용처
+					</span>
+					<span class="box_def_content">
+						<input type="text" id="input_target" class="inp_com inp_100">
+					</span>
+				</label>
+			</li>
+		</ul>
+		<div class="btn_wrap">
+			<input type="submit" value="완료" class="inp_b_com inp_type01 inp_100">
+		</div>
+	</form>
+</section>

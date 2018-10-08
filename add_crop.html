@@ -1,0 +1,43 @@
+<section class="container box_add_crop">
+	<div>
+		<article class="box_sch">
+			<form id="form_crop_search">
+				<fieldset>
+					<legend>작물명 검색</legend>
+					<input id="input_keyword" type="text" placeholder="작물명 입력 후 검색버튼을 눌러주세요." class="inp_com inp_100">
+					<input type="submit" value="검색" class="inp_b_com inp_type02">
+				</fieldset>
+			</form>
+
+			<fieldset id="fieldset_search_results" class="hidden">
+				<legend>검색 결과</legend>
+				<div id="div_mclass">
+					<h3>품목</h3>
+					<ul id="ul_mclass" class="ul_sch">
+						<!-- li의 하위메뉴가 열리면 class:on 부여해주세요~ -->
+						<li item_template="item">
+							<span id='name' class="li_sch">
+								:name
+								<span class="li_sch_num">(:sClassCount)</span>
+								<span class="li_sch_arrow">〉</span>
+							</span>
+							<ul>
+								<li item_template="item">
+									<span class="li_sch"></span>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				<div id="div_sclass">
+					<h3>품종</h3>
+					<ul id="ul_sclass" class="ul_sch">
+						<li item_template="item">
+							<span id='name' class="li_sch">:name</span>
+						</li>
+					</ul>
+				</div>
+			</fieldset>
+		</article>
+	</div>
+</section>

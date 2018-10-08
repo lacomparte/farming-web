@@ -1,0 +1,55 @@
+<li class="box_def">
+	<label>
+		<span class="lb_title">
+			<span>
+				<i class="fa fa-terminal"></i>
+			</span>
+			자재 이름
+		</span>
+		<span class="box_def_content clear btn_half">
+			<button type="button" id="button_search_material" class="btn_com btn_type02 btn_50">자재 찾기</button>
+			<button type="button" id="button_recent_material" class="btn_com btn_type01 btn_50">최근 사용</button>
+		</span>
+	</label>			
+</li>
+<li id="div_dilution" class="box_def">
+	<label class="clear multi_label" style="width:37%;">
+		<span class="lb_title">
+			<span>
+				<i class="fa fa-flask"></i>
+			</span>
+			희석 비율
+		</span>
+		<span class="box_def_content">
+			<input type="text" id="input_dilution_per" class="inp_com inp_100" pattern_type="float">
+		</span>
+	</label>
+	<span class="box_def_content multi_span clear" style="width:63%">
+		<select id="select_dilution_per_unit"></select>
+		<span class="txt_unit">당</span>
+		<input type="text" id="input_dilution" class="inp_com" pattern_type="float">
+		<select id="select_dilution_unit"></select>
+	</span>
+</li>
+<li class="box_def">
+	<label class="clear multi_label">
+		<span class="lb_title">
+			<span>
+				<i class="fa fa-tasks"></i>
+			</span>
+			총 사용량(자재)	
+		</span>
+		<span class="box_def_content">
+			<input type="text" id="input_used_amount_material" placeholder="총 사용량(자재)를 입력해주세요." class="inp_com inp_100" pattern_type="float">
+		</span>
+	</label>
+	<span class="box_def_content multi_span">
+		<select id="select_used_amount_material_unit" class="sel_100"></select>
+	</span>
+</li>
+<li class="box_def box_btn">
+	<div class="clear btn_half">
+		<button type="button" id="button_remove" class="btn_com btn_type02 btn_50">자재 제거</button>
+		<button type="button" id="button_add" class="btn_com btn_type01 btn_50">자재 추가</button>
+	</div>
+</li>

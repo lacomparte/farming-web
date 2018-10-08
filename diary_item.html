@@ -1,0 +1,68 @@
+<div>
+	<div id="div_user">
+		<a id="button_user">
+			<img id="img_user_profile" class="img_user_profile">
+			<span id="span_user_nick"></span>
+		</a>
+		<button id="button_follow" type="button" class="btn_com btn_type01">팔로우</button>
+	</div>
+	<h3 id="h_date" class="h_date"></h3>
+	<ul id="ul_contents" class="ul_contents">
+		<li item_template="item">
+			<div id="div_owner">
+				<button id="button_menu" type="button"><i class="fa fa-ellipsis-v"></i><span class="sound_only">메뉴</span></button>
+			</div>
+			<dl id="dl_detail" class="dl_detail clear"></dl>
+			<div class="gallery_images_wrap">
+				<div class="div_images_btn">
+					<button type="button" class="btn_prev">
+						<i class="fa fa-chevron-left"></i>
+						<span class="sound_only">이전</span>
+					</button>
+					<button type="button" class="btn_next">
+						<i class="fa fa-chevron-right"></i>
+						<span class="sound_only">다음</span>
+					</button>
+				</div>
+				<div class="gallery_images_rolling">
+					<div id="div_images" class="div_images clear" itemscope itemtype="http://schema.org/ImageGallery">
+						<figure item_template="item" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+							<a href=":imageUrl" itemprop="contentUrl" data-size=":imageSize">
+								<img id="img_thumbnail" itemprop="thumbnail" alt="" class="img_thumbnail" />
+							</a>
+							<figcaption itemprop="caption description" class="hidden"></figcaption>
+						</figure>
+					</div>
+				</div>
+			</div>
+		</li>
+	</ul>
+	<div id="div_emotion_comment" class="box_community_cmt clear">
+		<a id="button_emotion_icons" class="button_emotion_icons clear">
+			<img item_template="icon" class="img_emotion">
+			<span item_template="count"></span>
+		</a>
+		<div id="div_comment_count" class="div_comment_count">
+			<a id="button_comment_count">
+				<!-- 댓글 {0}개 -->
+			</a>
+		</div>
+	</div>
+	<div user_only>
+		<div id="div_emotion_comment_button" class="diary_btn_wrap clear">
+			<button id="button_emotion" type="button" class="button_emotion">
+				<!-- button_emotion의 class에 따라 아래 이미지가 어떤 것이 보여질지 달라짐 -->
+				<img id="img_emotion" class="img_emotion icon_like" src="images/icon_like.png">
+				<img id="img_emotion" class="img_emotion icon_awesome" src="images/icon_awesome.png">
+				<img id="img_emotion" class="img_emotion icon_funny" src="images/icon_funny.png">
+				<img id="img_emotion" class="img_emotion icon_sad" src="images/icon_sad.png">
+				<img id="img_emotion" class="img_emotion icon_angry" src="images/icon_angry.png">
+				<span id="span_emotion">좋아요</span>
+			</button>
+			<button id="button_comment" type="button" class="button_comment">
+				<i class="fa fa-commenting-o"></i>
+				<span id="span_comment">댓글달기</span>
+			</button>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,2060 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>이히히</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="css/app.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
+	<script type="text/javascript" src="js/farmingnote.ui.control.js"></script>
+</head>
+<body>
+<h1 id="h_title">아무말대잔치</h1>
+
+<!-- 로그인 login -->
+<section class="container box_login hidden">
+	<div class="box_login_hd">
+		<h1>
+			<a href="/" title="메인으로 돌아가기">
+				<img src="images/logo.png" alt="파밍노트">
+			</a>
+		</h1>
+	</div>
+	<div class="box_login_ct">
+		<div>
+			<a id="button_sign_up_with_phone_number" title="전화번호로 회원가입" class="btn_com btn_type01 btn_100">전화번호로 회원가입</a>
+		</div>
+		<div>
+			<form id="form_phone_login">
+				<!-- 가입한 전화번호 -->
+				<input id="input_phone_number" type="tel" name="" value="" maxlength="11" autofocus minlength="10" placeholder="가입한 전화번호" class="inp_com inp_txt inp_100">
+
+				<!-- 비밀번호 -->
+				<input id="input_password" type="password" value="" maxlength="30" minlength="4" name="" placeholder="비밀번호" class="inp_com inp_txt inp_100">
+
+				<!-- 로그인 버튼 -->
+				<input type="submit" name="" value="로그인" class="inp_b_com inp_type01 inp_100">
+			</form>
+		</div>
+		<div>
+			<a id="button_reset_password" title="비밀번호 찾기" class="btn_type03 btn_100">비밀번호 찾기</a>
+		</div>
+	</div>
+	
+	<!-- 구글 계정 및 카카오계정 로그인 -->
+	<div class="box_login_btn">
+		<!-- 구글 로그인 버튼 -->
+		<div>
+			<a id="button_google_login" class="btn_com btn_type01 btn_100">
+				<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" line-height="37px" viewBox="0 0 48 48" class="abcRioButtonSvg"><g><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"></path><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"></path><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"></path><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"></path><path fill="none" d="M0 0h48v48H0z"></path></g></svg>
+				<span><img src="images/btn_login_google_bg.png" alt="구글로고" width="20px">구글 계정으로 로그인</span>
+			</a>
+		</div>
+		<!-- 카카오 로그인 버튼 -->
+		<div>
+			<a id="button_kakao_login" class="btn_com btn_type01 btn_100" title="카카오로그인"><img src="images/btn_login_kakao_bg.png" alt="카카오톡 로고" width="20px">카카오톡 로그인</a>
+		</div>
+	</div>
+	<div>
+		<a title="로그인하지 않고 둘러보기" class="btn_type03 btn_100">로그인하지 않고 둘러보기</a>
+	</div>
+</section>
+
+<!-- 전화번호 인증 -->
+<section class="container box_auth hidden">
+	<form id="form_phone_number">
+		<p id="p_info">
+			입력하신 전화번호는 인증 후 아이디로 이용됩니다. 전화번호 입력 후 인증 번호 받기 버튼을 눌러주세요
+		</p>
+		<div>
+			<input id="input_phone_number" type="text" placeholder="-를 제외한 숫자만 입력해주십시오." required class="inp_com inp_100">
+			<div id="div_phone_number_example">
+				예) 01012345678
+			</div>
+		</div>
+		<div id="div_auth_code" class="hidden">
+			<input id="input_auth_code" type="text" placeholder="인증번호" maxlength="4">
+		</div>
+		<div>
+			<input id="button_submit" type="submit" value="인증번호 받기" class="inp_b_com inp_type01 inp_100">
+		</div>
+	</form>
+</section>
+
+<!-- 농장등록 add_farm -->
+<section class="container box_add_farm hidden">
+	<article class="box_sch">	
+		<form id="form_address">
+			<fieldset>
+				<legend>주소 검색</legend>
+				<input id="input_address" type="text" placeholder="읍,면,동과 이후 주소를 입력해주세요." class="inp_com inp_100">
+				<input type="submit" value="검색" class="inp_b_com inp_type02">
+				<!-- 
+				<img src="http://maps.gstatic.com/mapfiles/api-3/images/powered-by-google-on-white2.png">
+				-->
+			</fieldset>
+		</form>
+
+		<fieldset id="fieldset_address_list" class="hidden">
+			<legend>검색된 주소 목록</legend>
+			<ul id="ul_address" class="ul_sch">
+				<li item_template="item">
+					<p class="li_sch">:address</p>
+				</li>
+			</ul>
+		</fieldset>
+	</article>
+</section>
+
+<!-- 농장 상세 주소 입력 -->
+<section class="container box_add_farm_addr hidden">
+	<article class="box_inp_addr ">
+		<form id="form_detail_address" >
+			<fieldset>
+				<legend>상세 주소 입력</legend>
+				<p>농장 주소를 입력해주십시오.</p>
+				<input id="input_detail_address" type="text" size="10" class="inp_com inp_100">
+				<div class="clear btn_half">
+					<input type="button" value="취소" class="inp_b_com inp_type02 inp_50">	
+					<input type="submit" value="확인" class="inp_b_com inp_type01 inp_50">
+				</div>					
+			</fieldset>
+		</form>
+	</article>
+</section>
+
+<!-- 농장 면적 입력 -->
+<section class="container box_add_farm_area hidden">
+	<article class="box_inp_area ">
+		<!-- 사용자가 입력한 농장 주소 텍스트 들어오는 태그:p -->
+		<p>경기도 고양시</p>
+		<form id="form_area">
+			<fieldset>
+				<legend>면적</legend>
+				<div class="clear">
+					<input id="input_area" type="text" placeholder="농장 면적" class="inp_com inp_100">	
+					<select id="select_area_unit"></select>
+				</div>
+				<div class="btn_wrap">
+					<input type="submit" value="등록" class="inp_b_com inp_type01 inp_100">
+				</div>
+			</fieldset>
+		</form>
+	</article>
+</section>
+
+<!-- 작물등록 add_crop -->
+<section class="container box_add_crop hidden">
+	<div>
+		<article class="box_sch hidden1">
+			<form id="form_crop_search">
+				<fieldset>
+					<legend>작물명 검색</legend>
+					<input id="input_keyword" type="text" placeholder="작물명 입력 후 검색버튼을 눌러주세요." class="inp_com inp_100">
+					<input type="submit" value="검색" class="inp_b_com inp_type02">
+				</fieldset>
+			</form>
+
+			<fieldset id="fieldset_search_results" class="hidden1">
+				<legend>검색 결과</legend>
+				<div>
+					<h3>품목</h3>
+					<ul id="ul_mclass" class="ul_sch">
+						<!-- li의 하위메뉴가 열리면 class:on 부여해주세요~ -->
+						<li item_template="item" class="on">
+							<span id="name" class="li_sch">
+								:name
+								<span class="li_sch_num">(0)</span>
+								<span class="li_sch_arrow">〉</span>
+							</span>
+							<ul>
+								<li item_template="item">
+									<span class="li_sch">ddd</span>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				<div>
+					<h3>품종</h3>
+					<ul id="ul_sclass" class="ul_sch">
+						<li item_template="item">
+							<span id="name" class="li_sch">:name</span>
+						</li>
+					</ul>
+				</div>
+			</fieldset>
+		</article>
+
+		<form id="form_add_crop_confirm" class="hidden">
+			<fieldset>
+				<legend>확인</legend>
+				<p id="p_confirm_message"></p>
+				<input type="submit" value="등록">
+			</fieldset>
+		</form>
+	</div>
+</section>
+
+<!-- 농장 및 작물선택 farm crop select -->
+<section class="container box_sel_farm_crop hidden">
+	<form id="form_farm_crop_select">
+		<div id="div_farm" class="box_sch">
+			<fieldset>
+				<legend>농장</legend>
+				<h2 class="h2_title">농장</h2>
+				<ul id="ul_farm" class="ul_sch">
+					<li item_template="item">
+						<input type='checkbox' id=':checkboxId'>
+						<label for=":checkboxId">:name</label>
+					</li>
+				</ul>
+				<div class="div_no_farm_crop hidden">
+					<p>등록된 농장이 없습니다.<br>아래 버튼을 눌러 농장을 등록해주십시오.</p>
+					<button type="button" id="button_add_farm" class="btn_com btn_type01 btn_100">
+						농장등록 하기
+					</button>
+				</div>
+			</fieldset>
+		</div>
+		<div id="div_crop" class="box_sch">
+			<fieldset>
+				<legend>작물</legend>
+				<h2 class="h2_title">작물</h2>
+				<ul id="ul_crop" class="ul_sch">
+					<li item_template="item">
+						<input type='checkbox' id=':checkboxId'>
+						<label for=":checkboxId">:name</label>
+					</li>
+				</ul>
+				<div class="div_no_farm_crop hidden">
+					<p>등록된 작물이 없습니다.<br>아래 버튼을 눌러 작물을 등록해주십시오.</p>
+					<button type="button" id="button_add_crop" class="btn_com btn_type01 btn_100">
+						작물등록 하기
+					</button>
+				</div>
+			</fieldset>
+		</div>
+		<div class="btn_half clear">
+			<input type="button" value="취소" class="inp_b_com inp_type02 inp_50">
+			<input type="submit" value="다음" class="inp_b_com inp_type01 inp_50">
+		</div>
+	</form>
+</section>
+
+<!-- 작물 선택 crop_list -->
+<section class="container box_crop_list box_crop_farm_list hidden">
+	<div class="box_sch">
+		<ul id="ul_crop" class="ul_sch">
+			<li item_template="item">
+				<span class="li_sch">
+					:name
+					<button type="button" id="button_menu">
+						<i class="fa fa-ellipsis-v"></i>
+					</button>
+				</span>
+				<span style="padding-left: 20px">(:mClassName)</span>
+			</li>
+		</ul>
+		<div class="div_no_farm_crop hidden1">
+			<p>등록된 작물이 없습니다.<br>아래 버튼을 눌러 작물을 등록해주십시오.</p>
+			<button type="button" id="button_add_crop" class="btn_com btn_type01 btn_100">
+				작물등록 하기
+			</button>
+		</div>
+	</div>
+</section>
+
+<!-- 농장 선택 farm_list -->
+<section class="container box_farm_list box_crop_farm_list hidden">
+	<div class="box_sch">
+		<ul id="ul_farm" class="ul_sch">
+			<li item_template="item">
+				<span class="li_sch">
+					:name
+					<button type="button" id="button_menu">
+						<i class="fa fa-ellipsis-v"></i>
+					</button>
+				</span>
+			</li>
+		</ul>
+		<div class="div_no_farm_crop hidden1">
+			<p>등록된 농장이 없습니다.<br>아래 버튼을 눌러 농장을 등록해주십시오.</p>
+			<button type="button" id="button_add_farm" class="btn_com btn_type01 btn_100">
+				농장등록 하기
+			</button>
+		</div>
+	</div>
+</section>
+
+<!-- 비밀번호설정 -->
+<section class="container box_password hidden">
+	<form id="form_password">
+		<p>
+			6자리 이상 비밀번호를 입력해주세요. 숫자외에 영문, 특수문자를 활용하면 보안이 강력해집니다.
+		</p>
+		<div>
+			<input id="input_password" type="password" placeholder="비밀번호" required class="inp_com inp_txt inp_100">
+		</div>
+		<div>
+			<input id="input_password_check" type="password" placeholder="비밀번호 확인" required class="inp_com inp_txt inp_100">
+		</div>
+		<p>
+			확인 버튼을 누르시면 <a id="button_agreement">개인정보 수집 및 이용약관</a>에 동의하는 것으로 간주합니다.
+		</p>
+		<div class="btn_wrap">
+			<input id="button_submit" type="submit" value="확인" class="inp_b_com inp_type01 inp_100">
+		</div>
+	</form>
+</section>
+
+<!-- 날짜, 날씨 설정 diary_date_weather -->
+<section class="container box_date_weather hidden">
+	<form id="form_date_weather">
+		<ul>
+			<li class="box_def">
+				<label>
+					<span class="lb_title">
+						<span>
+							<i class="fa fa-calendar-check-o"></i>
+						</span>
+						날짜
+					</span>
+					<span class="box_def_content">
+						<input type="text" id="input_date" size="8" maxlength="11" placeholder="날짜를 입력해주세요. 예)2017.04.21" class="inp_com inp_txt inp_100">
+					</span>
+				</label>
+			</li>
+			
+			<li class="box_def">
+				<label>
+					<span class="lb_title">
+						<span>
+							<i class="fa fa-thermometer-empty"></i>
+						</span>
+						최저기온
+					</span>
+					<span class="box_def_content">
+						<input type="text" id="input_min_temp" size="5" placeholder="최저기온을 입력해주세요. 예)-3도" class="inp_com inp_txt inp_100">	
+					</span>
+				</label>
+			</il>
+				
+			<li class="box_def">
+				<label>
+					<span class="lb_title">
+						<span>
+							<i class="fa fa-thermometer-full"></i>
+						</span>
+						최고기온
+					</span>
+					<span class="box_def_content">
+						<input type="text" id="input_max_temp" size="5" placeholder="최고기온을 입력해주세요. 예)30도" class="inp_com inp_txt inp_100">
+					</span>
+				</label>
+			</li>
+			
+			<li class="box_def">
+				<label>
+					<span class="lb_title">
+						<span>
+							<i class="fa fa-tint"></i>
+						</span>
+						강수량
+					</span>
+					<span class="box_def_content">
+						<input type="text" id="input_precipitation" placeholder="강수량을 입력해주세요." class="inp_com inp_txt inp_100">
+					</span>
+				</label>
+			</li>
+
+			<li class="box_def">
+				<label>
+					<span class="lb_title">
+						<span>
+							<i class="fa fa-sun-o"></i>
+						</span>
+						날씨
+					</span>
+					<span class="box_def_content">
+						<input type="text" id="input_weather" placeholder="날씨를 입력해주세요. 예)구름낀뒤 맑음" class="inp_com inp_txt inp_100">
+					</span>
+				</label>
+			</li>
+		</ul>
+		<p id="p_selected_obs"></p>
+		<div class="btn_wrap">
+			<input type="submit" value="다음" class="inp_b_com inp_type01 inp_100">	
+		</div>
+	</form>
+</section>
+
+<!-- 활동 유형 diary_type_list -->
+<section class="container box_diary_type hidden">
+	<div class="box_sch">
+		<ul id="ul_diary_type" class="ul_sch">
+			<li item_template="item"><span class="li_sch">:name</span></li>
+		</ul>
+	</div>
+</section>
+
+<!-- 출하 -->
+<section class="container box_diary_content hidden">
+	<!-- export.html -->
+	<ul id="ul_exports">
+		<li class="box_def">	
+			<label>
+				<span class="lb_title">
+					<span>
+						<i class="fa fa-leaf"></i>
+					</span>
+					출하작물
+				</span>
+				<span class="box_def_content">
+					<select id="select_crop" class="sel_100"></select>	
+				</span>
+			</label>
+		</li>
+		<li class="box_def">	
+			<label>
+				<span class="lb_title">
+					<span>
+						<i class="fa fa-globe"></i>
+					</span>
+					출하처	
+				</span>
+				<span class="box_def_content clear">
+					<select id="select_destination" class="sel_100"></select>
+					<div class="clear btn_half">
+						<select id="select_market" class="sel_50"></select>
+						<select id="select_co" class="sel_50"></select>
+					</div>
+				</span>
+			</label>
+		</li>
+		<li class="box_def">
+			<label>
+				<span class="lb_title">
+					<span>
+						<i class="fa fa-cubes"></i>
+					</span>
+					출하량 단위	
+				</span>
+				<span class="box_def_content clear btn_third">
+					<input type="text" id="input_qty_size" size="5" class="inp_com inp_txt inp_30">
+					<select id="select_qty_weight_unit" class="sel_30"></select>
+					<select id="select_qty_type" class="sel_30"></select>
+				</span>	
+			</label>
+		</li>
+		<li class="box_def">
+			<label>
+				<span class="lb_title">
+					<span>
+						<i class="fa fa-truck"></i>
+					</span>
+					출하량
+				</span>
+				<span class="box_def_content">
+					<input type="text" id="input_qty" class="inp_com inp_txt inp_100"><span class="txt_unit">개</span>
+				</span>	
+			</label>
+		</li>
+		<li class="box_def">
+			<label>
+				<span class="lb_title">
+					<span>
+						<i class="fa fa-bookmark"></i>
+					</span>
+					등급
+				</span>
+				<span class="box_def_content">
+					<select id="select_grade" class="sel_100"></select>
+				</span>
+			</label>
+		</li>
+		<li class="box_def">
+			<label>
+				<span class="lb_title">
+					<span>
+						<i class="fa fa-won"></i>
+					</span>
+					단위가격
+				</span>
+				<span class="box_def_content">
+					<input type="text" id="input_price" class="inp_com inp_txt inp_100"><span class="txt_unit">원</span>
+				</span>	
+			</label>
+		</li>
+		<li class="box_def">
+			<div class="clear btn_half">
+				<button type="button" id="button_remove" class="btn_com btn_type02 btn_50">출하 제거</button>
+				<button type="button" id="button_add" class="btn_com btn_type01 btn_50">출하 추가</button>
+			</div>
+		</li>
+	</ul>
+
+	<!-- larbor_cost -->
+	<ul id="ul_labor_costs">
+		<li class="box_def">
+			<label>
+				<span class="lb_title">
+					<span>
+						<i class="fa fa-group"></i>
+					</span>
+					참여인원
+				</span>
+				<span class="box_def_content clear btn_half">
+					<select id="select_gender" class="sel_50" style="margin-right:4%;"></select>
+					<input type="text" id="input_man" size="3" placeholder="참여인원을 입력해주세요." class="inp_com inp_txt inp_50" style="padding-right:25px;"><span class="txt_unit">명</span>
+				</span>
+			</label>
+		</li>
+		<li class="box_def">
+			<label>
+				<span class="lb_title">
+					<span>
+						<i class="fa fa-won"></i>
+					</span>
+					인건비(인당)
+				</span>
+				<span class="box_def_content">
+					<input type="text" id="input_cost" size="6" placeholder="1인당 인건비를 입력해주세요." class="inp_com inp_txt inp_100"><span class="txt_unit">원</span>
+				</span>
+			</label>
+		</li>
+		<li class="box_def">
+			<div class="clear btn_half">
+				<button type="button" id="button_remove" class="btn_com btn_type02 btn_50">인건비 제거</button>
+				<button type="button" id="button_add" class="btn_com btn_type01 btn_50">인건비 추가</button>	
+			</div>
+		</li>
+	</ul>
+
+	<!-- diary_content_privacy -->
+	<div class="diary_content_privacy box_def">
+		<label>
+			<span class="lb_title">
+				<span>
+					<i class="fa fa-eye"></i>
+				</span>
+				공개범위	
+			</span>
+			<span class="box_def_content btn_wrap">
+				<select id="select_privacy" class="sel_100"></select>
+			</span>
+		</label>
+		<p>전체공개를 선택할 경우, 포인트를 드리고 모두일지에 영농일지가 공개됩니다.</p>
+	</div>
+
+	<!-- diary_content_memo -->
+	<div class="diary_content_memo box_def">
+		<label>
+			<span class="lb_title">
+				<span>
+					<i class="fa fa-pencil-square-o"></i>
+				</span>
+				메모
+			</span>
+			<span class="box_def_content">
+				<textarea id="textarea_memo" size="30" placeholder="작업과 관련된 추가내용을 입력해주세요."></textarea>
+			</span>
+		</label>
+	</div>
+
+	<!-- diary_content_image_attach -->
+	<div class="diary_content_image clear">
+		<button type="button" id="button_attach" class="btn_com btn_type02">사진 첨부</button>
+		<input type="file" id="input_file" accept="image/*" class="hidden" multiple>
+		<div class="box_ul_image">
+			<div>
+				<ul id="ul_image" class="clear">
+					<li item_template="item">
+						<img id="img_thumbnail" class="img_thumbnail">
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<!-- 완료버튼 -->
+	<div class="btn_wrap">
+		<button type="button" id="button_submit" class="btn_com btn_type01 btn_100">완료</button>
+	</div>
+
+	<!--
+	<ul id="ul_exports"></ul>
+	<ul id="ul_labor_costs"></ul>
+	<include src="diary_content_privacy" />
+	<include src="diary_content_memo" />
+	<include src="diary_content_image_attach" />
+	<button type="button" id="button_submit">완료</button>
+	-->
+</section>
+
+<!-- 관수 -->
+<section class="container box_diary_content_watering hidden">
+	<!-- diary_content_watering -->
+	<ul>
+		<li class="box_def">
+			<label>
+				<span class="lb_title">
+					<span>
+						<i class="fa fa-object-group"></i>
+					</span>
+					면적
+				</span>
+				<span class="box_def_content clear btn_half">
+					<input type="text" id="input_area" size="10" placeholder="면적을 입력해주세요." class="inp_com inp_txt inp_50">
+					<select id="select_area_unit" class="sel_50"></select>
+				</span>
+			</label>
+		</li>
+		<li class="box_def">
+			<label>
+				<span class="lb_title">
+					<span>
+						<i class="fa fa-clock-o"></i>
+					</span>
+					관수시간
+				</span>
+				<span class="box_def_content clear btn_half">
+					<input type="text" id="input_watering_duration" size="3" placeholder="관수시간을 입력해주세요." class="inp_com inp_txt inp_50">
+					<select id="select_watering_duration_unit" class="sel_50"></select>	
+				</span>				
+			</label>
+		</li>
+		<li class="box_def">
+			<label>
+				<span class="lb_title">
+					<span>
+						<i class="fa fa-shower"></i>
+					</span>
+					총 관수량
+				</span>
+				<span class="box_def_content clear btn_half">
+					<input type="text" id="input_watering_amount" placeholder="총 관수량을 입력해주세요." class="inp_com inp_txt inp_50">
+					<select id="select_watering_amount_unit" class="sel_50"></select>
+				</span>
+			</label>
+		</li>
+	<ul>
+</section>
+
+<!-- 친환경 자재사용(비료) -->
+<section class="container box_diary_content_mgmt hidden">
+	<ul class="hidden">
+		<li class="box_def">
+			<label>
+				<span class="lb_title">
+					<span>
+						<i class="fa fa-object-group"></i>
+					</span>
+					면적	
+				</span>
+				<span class="box_def_content clear btn_half">
+					<input type="text" id="input_area" size="10" placeholder="면적을 입력해주세요." class="inp_com inp_txt inp_50">
+					<select id="select_area_unit" class="sel_50"></select>
+				</span>
+			</label>
+		</li>
+		<li id="div_used_amount_water" class="box_def">
+			<label>
+				<span class="lb_title">
+					<span>
+						<i class="fa fa-shower"></i>
+					</span>
+					총 사용량(물)	
+				</span>
+				<span class="box_def_content clear btn_half">
+					<input type="text" id="input_used_amount_water" size="10" placeholder="총 사용량(물)을 입력해주세요." class="inp_com inp_txt inp_50">
+					<select id="select_used_amount_water_unit" class="sel_50"></select>
+				</span>
+			</label>
+		</li>
+	</ul>
+
+	<ul id="ul_mgmts">
+		<li class="box_def">
+			<label>
+				<span class="lb_title">
+					<span>
+						<i class="fa fa-terminal"></i>
+					</span>
+					자재 이름
+				</span>
+				<span class="box_def_content clear btn_half">
+					<button type="button" id="button_search_material" class="btn_com btn_type02 btn_50">자재 찾기</button>
+					<button type="button" id="button_recent_material" class="btn_com btn_type01 btn_50">최근 사용</button>
+				</span>
+			</label>			
+		</li>
+		<li id="div_dilution" class="box_def">
+			<label>
+				<span class="lb_title">
+					<span>
+						<i class="fa fa-flask"></i>
+					</span>
+					희석 비율
+				</span>
+				<span class="box_def_content clear">
+					<input type="text" id="input_dilution_per" class="inp_com inp_txt">
+					<select id="select_dilution_per_unit"></select>
+					<span class="txt_unit">당</span>
+					<input type="text" id="input_dilution" class="inp_com inp_txt">
+					<select id="select_dilution_unit"></select>
+				</span>
+			</label>
+		</li>
+		<li class="box_def">
+			<label>
+				<span class="lb_title">
+					<span>
+						<i class="fa fa-tasks"></i>
+					</span>
+					총 사용량(자재)	
+				</span>
+				<span class="box_def_content clear btn_half">
+					<input type="text" id="input_used_amount_material" placeholder="총 사용량(자재)를 입력해주세요." class="inp_com inp_txt inp_70">
+					<select id="select_used_amount_material_unit" class="sel_30"></select>
+				</span>
+			</label>
+		</li>
+		<li class="box_def">
+			<div class="clear btn_half">
+				<button type="button" id="button_remove" class="btn_com btn_type02 btn_50">자재 제거</button>
+				<button type="button" id="button_add" class="btn_com btn_type01 btn_50">자재 추가</button>
+			</div>
+		</li>
+	</ul>
+</section>
+
+<!-- 병, 해충발생 (병) -->
+<section class="container box_diary_content_pest hidden">
+	<ul>
+		<li class="box_def">
+			<label>
+				<span class="lb_title">
+					<span>
+						<i class="fa fa-crosshairs"></i>
+					</span>
+					종류	
+				</span>
+				<span class="box_def_content clear btn_half">
+					<button type="button" id="button_search_pest" class="btn_com btn_type02 btn_50">찾기</button>
+					<button type="button" id="button_recent_pest" class="btn_com btn_type01 btn_50">최근 사용</button>
+				</span>
+			</label>
+		</li>
+		<li class="box_def">
+			<label>
+				<span class="lb_title">
+					<span>
+						<i class="fa fa-bullhorn"></i>
+					</span>
+					확산정도
+				</span>
+				<span class="box_def_content">
+					<select id="select_diffusion" class="sel_100"></select>	
+				</span>
+			</label>
+		</li>
+	</ul>
+</section>
+
+<!-- 정식 -->
+<section class="container box_diary_content_planting hidden">
+	<ul>
+		<li class="box_def">
+			<label>
+				<span class="lb_title">
+					<span>
+						<i class="fa fa-object-group"></i>
+					</span>
+					면적	
+				</span>
+				<span class="box_def_content clear btn_half">
+					<input type="text" id="input_area" placeholder="면적을 입력해주세요." class="inp_com inp_txt inp_70">
+					<select id="select_area_unit" class="sel_30"></select>
+				</span>
+			</label>
+		</li>
+		<li class="box_def">
+			<label>
+				<span class="lb_title">	
+					<span>
+						<i class="fa fa-circle"></i>
+					</span>
+					주수	
+				</span>
+				<span class="box_def_content">
+					<input type="text" id="input_plant_amount" placeholder="주수를 입력해주세요." class="inp_com inp_txt inp_100">
+				</span>
+			</label>
+		</li>
+		<li class="box_def">
+			<label>
+				<span class="lb_title">
+					<span>
+						<i class="fa fa-won"></i>
+					</span>
+					주당 가격	
+				</span>
+				<span class="box_def_content">
+					<input type="text" id="input_plant_price" placeholder="주당 가격을 입력해주세요." class="inp_com inp_txt inp_100">
+				</span>
+			</label>
+		</li>
+	</ul>
+</section>
+
+<!-- 내 일지 -->
+<section class="container box_my_diary_list hidden">
+	<div id="div_filter">
+		<div class="clear">
+			<button type="button" id="button_select_farm">농장 선택</button>
+			<button type="button" id="button_select_crop">작물 선택</button>
+			<button type="button" id="button_select_type">활동 선택</button>
+			<button type="button" id="button_calendar">달력 보기</button>	
+		</div>
+		<ul id="ul_selected_filter_items" class="hidden">
+			<li item_template="item">:name</li>
+		</ul>
+	</div>
+
+	<div id="div_diary_list_header">
+		<!-- 일지 목록의 header, 특정 사용자의 일지 목록을 볼 때, 이곳에 사용자의 profile이 표시됨 -->
+	</div>
+
+	<ul id="ul_diary_list" class="ul_diary_list">
+		<li item_template="item" class="diary_list">
+			<div>
+				<div id="div_user" class="div_user">
+					<a id="button_user">
+						<img id="img_user_profile" src="http://mud-kage.kakao.co.kr/14/dn/btqcQ9YV5Ss/fR6g3JydGfgw60h0RY9mik/o.jpg">
+						<span id="span_user_nick">천상천하</span>
+					</a>
+					<button id="button_follow" type="button" class="btn_com btn_type01">팔로우</button>
+				</div>
+				<h3 id="h_date" class="h_date">2017.05.01</h3>
+				<ul id="ul_contents" class="ul_contents">
+					<li item_template="item">
+						<dl id="dl_detail" class="dl_detail clear">
+							<dt>농장</dt>
+							<dd>제주특별자치도 제주시</dd>
+							<dt>작물</dt>
+							<dd>황금향</dd>
+						</dl>
+						<div id="div_images" class="div_images" itemscope="" itemtype="http://schema.org/ImageGallery" data-pswp-uid="1">
+						</div>
+					</li>
+					<li item_template="item">
+						<dl id="dl_detail" class="dl_detail clear">
+							<dt>일지 유형</dt>
+							<dd>기타 농업활동</dd>
+							<dt>[인건비1]</dt>
+							<dd>
+								<dl>
+									<dt>참여인원</dt>
+									<br>
+									<dd>1명</dd>
+								</dl>
+							</dd>
+							<dt>추가내용</dt>
+							<dd>순솎기 및 꽃따기</dd>
+						</dl>
+						<div class="gallery_images_wrap">
+							<div id="div_images" class="div_images clear" itemscope="" itemtype="http://schema.org/ImageGallery" data-pswp-uid="2">
+								<figure item_template="item" itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject">
+									<a href="http://api.aws.farmingnote.co.kr/image?file=19663" itemprop="contentUrl" data-size="2000x1500">
+										<img src="http://api.aws.farmingnote.co.kr/image?file=19663&amp;isThumbnail=1" itemprop="thumbnail" alt="" class="img_thumbnail">
+									</a>
+									<figcaption itemprop="caption description" class="hidden">Image caption</figcaption>
+								</figure>
+
+								<figure item_template="item" itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject">
+									<a href="http://api.aws.farmingnote.co.kr/image?file=19664" itemprop="contentUrl" data-size="1500x2000">
+										<img src="http://api.aws.farmingnote.co.kr/image?file=19664&amp;isThumbnail=1" itemprop="thumbnail" alt="" class="img_thumbnail">
+									</a>
+									<figcaption itemprop="caption description" class="hidden">Image caption</figcaption>
+								</figure>
+
+								<figure item_template="item" itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject">
+									<a href="http://api.aws.farmingnote.co.kr/image?file=19665" itemprop="contentUrl" data-size="2000x1500">
+										<img src="http://api.aws.farmingnote.co.kr/image?file=19665&amp;isThumbnail=1" itemprop="thumbnail" alt="" class="img_thumbnail">
+									</a>
+									<figcaption itemprop="caption description" class="hidden">Image caption</figcaption>
+								</figure>
+
+								<figure item_template="item" itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject">
+									<a href="http://api.aws.farmingnote.co.kr/image?file=19663" itemprop="contentUrl" data-size="2000x1500">
+										<img src="http://api.aws.farmingnote.co.kr/image?file=19663&amp;isThumbnail=1" itemprop="thumbnail" alt="" class="img_thumbnail">
+									</a>
+									<figcaption itemprop="caption description" class="hidden">Image caption</figcaption>
+								</figure>
+
+								<figure item_template="item" itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject">
+									<a href="http://api.aws.farmingnote.co.kr/image?file=19664" itemprop="contentUrl" data-size="1500x2000">
+										<img src="http://api.aws.farmingnote.co.kr/image?file=19664&amp;isThumbnail=1" itemprop="thumbnail" alt="" class="img_thumbnail">
+									</a>
+									<figcaption itemprop="caption description" class="hidden">Image caption</figcaption>
+								</figure>
+
+								<figure item_template="item" itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject">
+									<a href="http://api.aws.farmingnote.co.kr/image?file=19665" itemprop="contentUrl" data-size="2000x1500">
+										<img src="http://api.aws.farmingnote.co.kr/image?file=19665&amp;isThumbnail=1" itemprop="thumbnail" alt="" class="img_thumbnail">
+									</a>
+									<figcaption itemprop="caption description" class="hidden">Image caption</figcaption>
+								</figure>
+
+								<figure item_template="item" itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject">
+									<a href="http://api.aws.farmingnote.co.kr/image?file=19663" itemprop="contentUrl" data-size="2000x1500">
+										<img src="http://api.aws.farmingnote.co.kr/image?file=19663&amp;isThumbnail=1" itemprop="thumbnail" alt="" class="img_thumbnail">
+									</a>
+									<figcaption itemprop="caption description" class="hidden">Image caption</figcaption>
+								</figure>
+
+								<figure item_template="item" itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject">
+									<a href="http://api.aws.farmingnote.co.kr/image?file=19664" itemprop="contentUrl" data-size="1500x2000">
+										<img src="http://api.aws.farmingnote.co.kr/image?file=19664&amp;isThumbnail=1" itemprop="thumbnail" alt="" class="img_thumbnail">
+									</a>
+									<figcaption itemprop="caption description" class="hidden">Image caption</figcaption>
+								</figure>
+
+								<figure item_template="item" itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject">
+									<a href="http://api.aws.farmingnote.co.kr/image?file=19665" itemprop="contentUrl" data-size="2000x1500">
+										<img src="http://api.aws.farmingnote.co.kr/image?file=19665&amp;isThumbnail=1" itemprop="thumbnail" alt="" class="img_thumbnail">
+									</a>
+									<figcaption itemprop="caption description" class="hidden">Image caption</figcaption>
+								</figure>
+							</div>
+						</div>
+					</li>
+				</ul>
+				<div>
+					<div id="div_emotion_icons">
+						
+						
+					</div>
+					<div id="div_comment_count">
+						<!-- 댓글 {0}개 -->
+					</div>
+				</div>
+				<div class="diary_btn_wrap clear">
+					<button id="button_emotion" type="button">
+						<!-- 감정을 선택하는 메뉴는 popover 형태, emotion_menu.html 참고 -->
+						<!-- <img id="img_emotion" class="img_emotion deactive" src="images/icon_like.png"> -->
+						<i class="fa fa-thumbs-o-up"></i>
+						<span id="span_emotion">좋아요</span>
+					</button>
+					<button id="button_comment" type="button">
+						<i class="fa fa-commenting-o"></i>
+						<span id="span_comment">댓글달기</span>
+					</button>
+				</div>
+			</div>
+		</li>
+		<li item_template="item" class="diary_list">
+			<div>
+				<div id="div_user">
+					<a id="button_user">
+						<img id="img_user_profile" src="http://mud-kage.kakao.co.kr/14/dn/btqcQ9YV5Ss/fR6g3JydGfgw60h0RY9mik/o.jpg">
+						<span id="span_user_nick">천상천하</span>
+					</a>
+					<button id="button_follow" type="button" class="btn_com btn_type01">팔로우</button>
+				</div>
+				<h3 id="h_date">2017.05.01</h3>
+				<ul id="ul_contents" class="ul_contents">
+					<li item_template="item">
+						<dl id="dl_detail" class="clear">
+							<dt>농장</dt>
+							<dd>제주특별자치도 제주시</dd>
+							<dt>작물</dt>
+							<dd>황금향</dd>
+						</dl>
+						<div id="div_images" class="div_images" itemscope="" itemtype="http://schema.org/ImageGallery" data-pswp-uid="1">
+						</div>
+					</li>
+					<li item_template="item">
+						<dl id="dl_detail" class="clear">
+							<dt>일지 유형</dt>
+							<dd>기타 농업활동</dd>
+							<dt>[인건비1]</dt>
+							<dd>
+								<dl>
+									<dt>참여인원</dt>
+									<br>
+									<dd>1명</dd>
+								</dl>
+							</dd>
+							<dt>추가내용</dt>
+							<dd>순솎기 및 꽃따기</dd>
+						</dl>
+						<div class="gallery_images_wrap">
+							<div id="div_images" class="div_images clear" itemscope="" itemtype="http://schema.org/ImageGallery" data-pswp-uid="2">
+								<figure item_template="item" itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject">
+									<a href="http://api.aws.farmingnote.co.kr/image?file=19663" itemprop="contentUrl" data-size="2000x1500">
+										<img src="http://api.aws.farmingnote.co.kr/image?file=19663&amp;isThumbnail=1" itemprop="thumbnail" alt="" class="img_thumbnail">
+									</a>
+									<figcaption itemprop="caption description" class="hidden">Image caption</figcaption>
+								</figure>
+
+								<figure item_template="item" itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject">
+									<a href="http://api.aws.farmingnote.co.kr/image?file=19664" itemprop="contentUrl" data-size="1500x2000">
+										<img src="http://api.aws.farmingnote.co.kr/image?file=19664&amp;isThumbnail=1" itemprop="thumbnail" alt="" class="img_thumbnail">
+									</a>
+									<figcaption itemprop="caption description" class="hidden">Image caption</figcaption>
+								</figure>
+
+								<figure item_template="item" itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject">
+									<a href="http://api.aws.farmingnote.co.kr/image?file=19665" itemprop="contentUrl" data-size="2000x1500">
+										<img src="http://api.aws.farmingnote.co.kr/image?file=19665&amp;isThumbnail=1" itemprop="thumbnail" alt="" class="img_thumbnail">
+									</a>
+									<figcaption itemprop="caption description" class="hidden">Image caption</figcaption>
+								</figure>
+
+								<figure item_template="item" itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject">
+									<a href="http://api.aws.farmingnote.co.kr/image?file=19663" itemprop="contentUrl" data-size="2000x1500">
+										<img src="http://api.aws.farmingnote.co.kr/image?file=19663&amp;isThumbnail=1" itemprop="thumbnail" alt="" class="img_thumbnail">
+									</a>
+									<figcaption itemprop="caption description" class="hidden">Image caption</figcaption>
+								</figure>
+
+								<figure item_template="item" itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject">
+									<a href="http://api.aws.farmingnote.co.kr/image?file=19664" itemprop="contentUrl" data-size="1500x2000">
+										<img src="http://api.aws.farmingnote.co.kr/image?file=19664&amp;isThumbnail=1" itemprop="thumbnail" alt="" class="img_thumbnail">
+									</a>
+									<figcaption itemprop="caption description" class="hidden">Image caption</figcaption>
+								</figure>
+
+								<figure item_template="item" itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject">
+									<a href="http://api.aws.farmingnote.co.kr/image?file=19665" itemprop="contentUrl" data-size="2000x1500">
+										<img src="http://api.aws.farmingnote.co.kr/image?file=19665&amp;isThumbnail=1" itemprop="thumbnail" alt="" class="img_thumbnail">
+									</a>
+									<figcaption itemprop="caption description" class="hidden">Image caption</figcaption>
+								</figure>
+
+								<figure item_template="item" itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject">
+									<a href="http://api.aws.farmingnote.co.kr/image?file=19663" itemprop="contentUrl" data-size="2000x1500">
+										<img src="http://api.aws.farmingnote.co.kr/image?file=19663&amp;isThumbnail=1" itemprop="thumbnail" alt="" class="img_thumbnail">
+									</a>
+									<figcaption itemprop="caption description" class="hidden">Image caption</figcaption>
+								</figure>
+
+								
+							</div>
+						</div>
+					</li>
+				</ul>
+				<div>
+					<div id="div_emotion_icons">
+						
+						
+					</div>
+					<div id="div_comment_count">
+						<!-- 댓글 {0}개 -->
+					</div>
+				</div>
+				<div class="diary_btn_wrap clear">
+					<button id="button_emotion" type="button">
+						<!-- 감정을 선택하는 메뉴는 popover 형태, emotion_menu.html 참고 -->
+						<!-- <img id="img_emotion" class="img_emotion deactive" src="images/icon_like.png"> -->
+						<i class="fa fa-thumbs-o-up"></i>
+						<span id="span_emotion">좋아요</span>
+					</button>
+					<button id="button_comment" type="button">
+						<i class="fa fa-commenting-o"></i>
+						<span id="span_comment">댓글달기</span>
+					</button>
+				</div>
+			</div>
+		</li>
+		<li item_template="item" class="diary_list">
+			<div>
+				<div id="div_user">
+					<a id="button_user">
+						<img id="img_user_profile" src="http://mud-kage.kakao.co.kr/14/dn/btqcQ9YV5Ss/fR6g3JydGfgw60h0RY9mik/o.jpg">
+						<span id="span_user_nick">천상천하</span>
+					</a>
+					<button id="button_follow" type="button" class="btn_com btn_type01">팔로우</button>
+				</div>
+				<h3 id="h_date">2017.05.01</h3>
+				<ul id="ul_contents" class="ul_contents">
+					<li item_template="item">
+						<dl id="dl_detail" class="clear">
+							<dt>농장</dt>
+							<dd>제주특별자치도 제주시</dd>
+							<dt>작물</dt>
+							<dd>황금향</dd>
+						</dl>
+						<div id="div_images" class="div_images" itemscope="" itemtype="http://schema.org/ImageGallery" data-pswp-uid="1">
+						</div>
+					</li>
+					<li item_template="item">
+						<dl id="dl_detail" class="clear">
+							<dt>일지 유형</dt>
+							<dd>기타 농업활동</dd>
+							<dt>[인건비1]</dt>
+							<dd>
+								<dl>
+									<dt>참여인원</dt>
+									<br>
+									<dd>1명</dd>
+								</dl>
+							</dd>
+							<dt>추가내용</dt>
+							<dd>순솎기 및 꽃따기</dd>
+						</dl>
+						<div class="gallery_images_wrap">
+							<div id="div_images" class="div_images clear" itemscope="" itemtype="http://schema.org/ImageGallery" data-pswp-uid="2">
+								<figure item_template="item" itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject">
+									<a href="http://api.aws.farmingnote.co.kr/image?file=19663" itemprop="contentUrl" data-size="2000x1500">
+										<img src="http://api.aws.farmingnote.co.kr/image?file=19663&amp;isThumbnail=1" itemprop="thumbnail" alt="" class="img_thumbnail">
+									</a>
+									<figcaption itemprop="caption description" class="hidden">Image caption</figcaption>
+								</figure>
+
+							</div>
+						</div>
+					</li>
+				</ul>
+				<div>
+					<div id="div_emotion_icons">
+						
+						
+					</div>
+					<div id="div_comment_count">
+						<!-- 댓글 {0}개 -->
+					</div>
+				</div>
+				<div class="diary_btn_wrap clear">
+					<button id="button_emotion" type="button">
+						<!-- 감정을 선택하는 메뉴는 popover 형태, emotion_menu.html 참고 -->
+						<!-- <img id="img_emotion" class="img_emotion deactive" src="images/icon_like.png"> -->
+						<i class="fa fa-thumbs-o-up"></i>
+						<span id="span_emotion">좋아요</span>
+					</button>
+					<button id="button_comment" type="button">
+						<i class="fa fa-commenting-o"></i>
+						<span id="span_comment">댓글달기</span>
+					</button>
+				</div>
+			</div>
+		</li>
+	</ul>
+</section>
+
+<!-- 달력 -->
+<section class="container hidden">
+	<!-- 복사할때 section은 제외 -->
+	<div id="div_diary_calendar">
+		<div class="box_calendar_header clear">
+			<div class="box_calendar_year clear">
+				<select id="select_year"></select><span class="sel_unit">년</span>
+				<select id="select_month"></select><span class="sel_unit">월</span>
+			</div>
+			<div class="box_calendar_btn clear btn_half">
+				<button id="button_prev" type="button" class="btn_com btn_50 btn_type01"><i class="fa fa-chevron-left"></i>이전 달</button>
+				<button id="button_next" type="button" class="btn_com btn_50 btn_type01">다음 달<i class="fa fa-chevron-right"></i></button>
+			</div>	
+		</div>
+		<ul id="ul_day_of_week" class="clear">
+			<li item_template="item">:dayOfWeek</li>	
+		</ul>
+
+		<ul id="ul_dates">
+			<li item_template="item">
+				<div>:date</div>
+				<ul id="ul_contents">
+					<li item_template="item">:content</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</section>
+
+<!-- 일지 검색 -->
+<section class="container box_search_diary hidden">
+	<form id="form_search">
+		<ul>
+			<li class="box_def">
+				<label>
+					<span class="lb_title">
+						<span>
+							<i class="fa fa-terminal"></i>
+						</span>
+						검색어
+					</span>
+					<div class="box_def_content">
+						<input id="input_keyword" type="text" size="5" maxlength="50" placeholder="검색어를 입력해주세요." class="inp_com inp_txt inp_100">
+					</div>
+				</label>
+			</li>
+			<li class="box_def">
+				<label>
+					<span class="lb_title">
+						<span>
+							<i class="fa fa-arrows-h"></i>
+						</span>
+						검색 범위	
+					</span>
+					<div class="box_def_content">
+						<select id="select_diary_list_type" class="sel_100"></select>	
+					</div>
+					
+				</label>
+			</li>
+			<li class="box_def">
+				<label>
+					<span class="lb_title">
+						<span>
+							<i class="fa fa-calendar"></i>
+						</span>
+						기간	
+					</span>
+					<div class="box_def_content box_sch_period btn_half clear">
+						<input id="button_date_range_start" type="text" placeholder="과거 날짜" class="inp_com inp_txt inp_50">
+						<span class="txt_unit">~</span>
+						<input id="button_date_range_end" type="text" placeholder="최근 날짜" class="inp_com inp_txt inp_50">
+					</div>
+					
+				</label>
+			</li>
+			<li class="box_def">
+				<label>
+					<span class="lb_title">
+						<span>
+							<i class="fa fa-folder-o"></i>
+						</span>
+						일지유형	
+					</span>
+					<div class="box_def_content btn_wrap">
+						<button type="button" id="button_diary_type" class="btn_com btn_type02 btn_100">선택</button>	
+					</div>
+				</label>
+			</li>
+			<li class="box_def">
+				<span class="lb_title">
+					<span>
+						<i class="fa fa-sort-amount-asc"></i>
+					</span>
+					정렬	
+				</span>
+				<div class="box_def_content clear">
+					<label class="box_align_period">
+						<input type="radio" name="sort" value="0" checked="true"> 
+						<span>최근 ~ 과거</span>
+					</label>
+					<label class="box_align_period">
+						<input type="radio" name="sort" value="1">
+						<span>과거 ~ 최근</span>
+					</label>	
+				</div>
+			</li>
+		</ul>
+		<div class="btn_wrap">
+			<input type="submit" value="검색" class="inp_b_com inp_type01 inp_100">
+		</div>
+	</form>
+</section>
+
+<!-- 내 장부 accounting_list -->
+<section class="container box_accounting_list hidden">
+	<div id="div_filter">
+		<div class="clear">
+			<button type="button" id="button_select_farm">농장 선택</button>
+			<button type="button" id="button_select_crop">작물 선택</button>
+			<button type="button" id="button_select_type">유형 선택</button>
+			<button type="button" id="button_calendar">달력 보기</button>
+		</div>
+		<ul id="ul_selected_filter_items" class="ul_diary_list">
+			<!-- <li item_template="item">:name</li> -->
+		</ul>
+	</div>
+	<div class="div_date_range clear">
+		<input id="button_date_range_start" type="text" readonly="readonly" size="10" maxlength="11" class="inp_com inp_txt">
+		<span class="txt_unit">~</span>
+		<input id="button_date_range_end" type="text" readonly="readonly" size="10" maxlength="11" class="inp_com inp_txt">
+		<select id="select_sort"></select>
+	</div>
+	<div class="summary_accounting">
+		<table>
+			<caption class="sound_only">총수입, 총지출, 잔액요약</caption>
+			<thead>
+				<tr>
+					<th>총 수입</th>
+					<th>총 지출</th>
+					<th>잔액</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td id="dd_income">3,500,000 원</td>
+					<td id="dd_outgo">800,000 원</td>
+					<td id="dd_balance">2,700,000 원</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<ul id="ul_accounting_list" class="ul_diary_list">
+		<!-- <include src="accounting_list_item" /> -->
+		<li item_template="item" class="diary_list">
+			<div>
+				<h3 id="h_date">2017.04.14</h3>
+				<ul id="ul_item" class="ul_contents">
+		
+					<li item_template="item">
+						<div id="div_menu" class="hidden1">
+							<button id="button_menu" type="button"><i class="fa fa-ellipsis-v"></i><span class="sound_only">메뉴</span></button>
+						</div>
+						<dl id="dl_detail" class="clear">
+							<dt>유형</dt>
+							<dd>출하</dd>
+							<dt>일지 유형</dt>
+							<dd>출하</dd>
+							<dt>[출하1]</dt>
+							<dd>
+								<dl>
+									<dt>출하작물</dt>
+									<dd>가시오이</dd>
+									<dt>출하처</dt>
+									<dd>경매시장</dd>
+									<dt>출하량 단위</dt>
+									<dd>321 / kg / 박스</dd>
+									<dt>출하량</dt>
+									<dd>334</dd>
+									<dt>등급</dt>
+									<dd>보통</dd>
+									<dt>단위가격</dt>
+									<dd>25,678원</dd>
+								</dl>
+							</dd>
+							<dt>추가내용</dt>
+							<dd>dsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsd</dd>
+						</dl>
+						<p id="p_cost">8,576,450원</p>
+					</li>
+				</ul>
+			</div>
+		</li>
+	</ul>	
+</section>
+
+<!-- 다이어리 코멘트 -->
+<section class="container ul_diary_list diary_item_detail hidden">
+	<div id="div_diary_item" class="diary_list">
+		<div id="div_user">
+			<a id="button_user">
+				<img id="img_user_profile" class="img_user_profile" src="images/logo.png">
+				<span id="span_user_nick">익명의농장4140</span>
+			</a>
+			<button id="button_follow" type="button" class="btn_com btn_type01">팔로우</button>
+		</div>
+		<h3 id="h_date" class="h_date">2017.04.14</h3>
+		<ul id="ul_contents" class="ul_contents">	
+			<li item_template="item">
+				<div id="div_owner">
+					<button id="button_menu" type="button"><i class="fa fa-ellipsis-v"></i><span class="sound_only">메뉴</span></button>
+				</div>
+				<dl id="dl_detail" class="dl_detail clear"><dt>농장</dt>
+					<dd>일산 우히히</dd>
+					<dt>작물</dt>
+					<dd>가시오이</dd>
+					<dt>최저기온</dt>
+					<dd>10.1</dd>
+					<dt>최고기온</dt>
+					<dd>17.7</dd>
+					<dt>강수량</dt>
+					<dd>6</dd>
+					<dt>날씨</dt>
+					<dd>비, 박무</dd>
+				</dl>
+			</li>
+			<li item_template="item">
+				<div id="div_owner">
+					<button id="button_menu" type="button"><i class="fa fa-ellipsis-v"></i><span class="sound_only">메뉴</span></button>
+				</div>
+				<dl id="dl_detail" class="dl_detail clear"><dt>일지 유형</dt>
+					<dd>출하</dd>
+					<dt>[출하1]</dt>
+					<dd><dl><dt>출하작물</dt>
+					<dd>가시오이</dd>
+					<dt>출하처</dt>
+					<dd>경매시장</dd>
+					<dt>출하량 단위</dt>
+					<dd>321 / kg / 박스</dd>
+					<dt>출하량</dt>
+					<dd>334</dd>
+					<dt>등급</dt>
+					<dd>보통</dd>
+					<dt>단위가격</dt>
+					<dd>25,678원</dd></dl></dd>
+					<dt>[인건비1]</dt>
+					<dd><dl><dt>참여인원</dt>
+					<dd>여자 432명</dd>
+					<dt>인건비(인당)</dt>
+					<dd>24,444원</dd></dl></dd>
+					<dt>[인건비2]</dt>
+					<dd><dl><dt>참여인원</dt>
+					<dd>여자 321명</dd>
+					<dt>인건비(인당)</dt>
+					<dd>32,133원</dd></dl></dd>
+					<dt>추가내용</dt>
+					<dd>dsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsdqdwqdsd</dd>
+				</dl>
+			</li>
+		</ul>
+		<div>
+			<div id="div_emotion_icons">
+			</div>
+			<div id="div_comment_count">
+				<!-- 댓글 {0}개 -->
+			</div>
+		</div>
+		<div class="diary_btn_wrap clear">
+			<button id="button_emotion" type="button" class="button_emotion sel_awesome">
+				<!-- 감정을 선택하는 메뉴는 popover 형태, emotion_menu.html 참고 -->
+				<img id="img_emotion" class="img_emotion icon_like" src="images/icon_like.png">
+				<img id="img_emotion" class="img_emotion deactive icon_awesome" src="images/icon_awesome.png">
+				<img id="img_emotion" class="img_emotion icon_funny" src="images/icon_funny.png">
+				<img id="img_emotion" class="img_emotion icon_sad" src="images/icon_sad.png">
+				<img id="img_emotion" class="img_emotion icon_angry" src="images/icon_angry.png">
+				<span id="span_emotion">좋아요</span>
+			</button>
+			<button id="button_comment" class="button_comment" type="button">
+				<i class="fa fa-commenting-o"></i>
+				<span id="span_comment">댓글달기</span>
+			</button>
+		</div>
+	</div>
+	<form id="form_comment" class="form_comment">
+		<!-- 일지 댓글 입력 폼 -->
+		<div class="box_comment">
+			<div class="box_inp">
+				<input type="text" id="input_comment" placeholder="댓글을 입력하세요" class="inp_com inp_txt inp_100 inp_comment">	
+			</div>
+			<div class="box_submit">
+				<button type="submit" class="btn_com btn_type01 btn_100">게시</button>	
+			</div>
+		</div>
+	</form>
+	<ul id="ul_comment" class="ul_comment_d1">
+		<!-- 댓글 목록 -->
+		<li item_template="item">
+			<div class="box_user">
+				<a id="button_user">
+					<img id="img_user_profile" class="img_user_profile" src="images/logo.png">	
+					<span id="span_user_nick" class="span_user_nick">파밍관리자</span>
+				</a>
+			</div>
+			<div class="box_comment_content">
+				<p id="p_text" class="p_text">앱을 업데이트 하시면 인건비를 등록하지 않아도 일지 등록이 가능합니다.</p>
+				
+				<div id="div_date" class="div_date">14일 전</div>
+				<div class="box_user_action">
+					<a id="button_emotion">좋아요</a>
+					<span id="span_emotion" class="span_emotion hidden1">
+						| <img id="img_emotion" class="img_emotion" src="images/icon_like.png">
+						<span id="span_emotion_count" class="span_emotion_count">10</span>
+					</span>
+					|
+					<a id="button_reply">댓글 달기</a>
+				</div>
+				<div id="div_owner" class="div_owner">
+					<button id="button_menu" type="button"><i class="fa fa-ellipsis-v"></i><span class="sound_only">메뉴</span></button>
+				</div>
+				<form id="form_reply" class="form_reply hidden">
+					<!-- 댓글의 댓글(답글)을 입력하기 위한 폼 -->
+					<input type="text" id="input_reply" class="input_reply" placeholder="댓글을 입력하세요">
+					<button type="submit">게시</button>
+				</form>
+			</div>
+			<ul id="ul_reply" class="ul_comment_d2">
+				<!-- 댓글의 댓글(답글) 목록 -->
+				<li item_template="item">
+					<div class="box_user">
+						<a id="button_user">
+							<img id="img_user_profile" class="img_user_profile" src="images/logo.png">	
+							<span id="span_user_nick" class="span_user_nick">파밍관리자</span>
+						</a>
+					</div>
+					<div class="box_comment_content">
+						<p id="p_text" class="p_text">앱을 업데이트 하시면 인건비를 등록하지 않아도 일지 등록이 가능합니다.</p>
+						
+						<div id="div_date" class="div_date">14일 전</div>
+						<div class="box_user_action">
+							<a id="button_emotion">좋아요</a>
+							<span id="span_emotion" class="span_emotion hidden">
+								| <img id="img_emotion" class="img_emotion" src="images/icon_like.png">
+								<span id="span_emotion_count" class="span_emotion_count">2</span>
+							</span>
+							|
+							<a id="button_reply">댓글 달기</a>
+						</div>
+						<div id="div_owner" class="div_owner">
+							<button id="button_menu" type="button"><i class="fa fa-ellipsis-v"></i><span class="sound_only">메뉴</span></button>
+						</div>
+						<form id="form_reply" class="form_reply hidden">
+							<!-- 댓글의 댓글(답글)을 입력하기 위한 폼 -->
+							<input type="text" id="input_reply" class="input_reply" placeholder="댓글을 입력하세요">
+							<button type="submit">게시</button>
+						</form>
+					</div>
+				</li>
+				<li item_template="item">
+					<div class="box_user">
+						<a id="button_user">
+							<img id="img_user_profile" class="img_user_profile" src="images/logo.png">	
+							<span id="span_user_nick" class="span_user_nick">파밍관리자</span>
+						</a>
+					</div>
+					<div class="box_comment_content">
+						<p id="p_text" class="p_text">앱을 업데이트 하시면 인건비를 등록하지 않아도 일지 등록이 가능합니다.</p>
+						
+						<div id="div_date" class="div_date">14일 전</div>
+						<div class="box_user_action">
+							<a id="button_emotion">좋아요</a>
+							<span id="span_emotion" class="span_emotion hidden">
+								| <img id="img_emotion" class="img_emotion" src="images/icon_like.png">
+								<span id="span_emotion_count" class="span_emotion_count">2</span>
+							</span>
+							|
+							<a id="button_reply">댓글 달기</a>
+						</div>
+						<div id="div_owner" class="div_owner">
+							<button id="button_menu" type="button"><i class="fa fa-ellipsis-v"></i><span class="sound_only">메뉴</span></button>
+						</div>
+						<form id="form_reply" class="form_reply hidden">
+							<!-- 댓글의 댓글(답글)을 입력하기 위한 폼 -->
+							<input type="text" id="input_reply" class="input_reply" placeholder="댓글을 입력하세요">
+							<button type="submit">게시</button>
+						</form>
+					</div>
+				</li>
+			</ul>
+		</li>
+		<li item_template="item">
+			<div class="box_user">
+				<a id="button_user">
+					<img id="img_user_profile" class="img_user_profile" src="images/logo.png">	
+					<span id="span_user_nick" class="span_user_nick">파밍관리자</span>
+				</a>
+			</div>
+			<div class="box_comment_content">
+				<p id="p_text" class="p_text">앱을 업데이트 하시면 인건비를 등록하지 않아도 일지 등록이 가능합니다.</p>
+				<form id="form_edit_comment" class="form_edit_comment hidde1n">
+					<!-- 댓글 수정용 폼 -->
+					<div class="box_inp">
+						<input type="text" id="input_edit_comment" placeholder="댓글을 입력하세요" class="inp_com inp_txt inp_100 inp_comment"/>
+					</div>
+					<div class="box_modify btn_half clear">
+						<button id="button_cancel_edit" type="button" class="btn_com btn_type02 btn_50">취소</button>
+						<button type="submit" class="btn_com btn_type01 btn_50">수정</button>
+					</div>
+				</form>
+				<div id="div_date" class="div_date">14일 전</div>
+				<div class="box_user_action">
+					<a id="button_emotion">좋아요</a>
+					<span id="span_emotion" class="span_emotion hidden1">
+						| <img id="img_emotion" class="img_emotion" src="images/icon_like.png">
+						<span id="span_emotion_count" class="span_emotion_count">10</span>
+					</span>
+					|
+					<a id="button_reply">댓글 달기</a>
+				</div>
+				<div id="div_owner" class="div_owner">
+					<button id="button_menu" type="button"><i class="fa fa-ellipsis-v"></i><span class="sound_only">메뉴</span></button>
+				</div>
+				<form id="form_reply" class="form_reply hidden">
+					<!-- 댓글의 댓글(답글)을 입력하기 위한 폼 -->
+					<input type="text" id="input_reply" class="input_reply" placeholder="댓글을 입력하세요">
+					<button type="submit">게시</button>
+				</form>
+			</div>
+			<ul id="ul_reply" class="ul_comment_d2">
+				<!-- 댓글의 댓글(답글) 목록 -->
+				<li item_template="item">
+					<div class="box_user">
+						<a id="button_user">
+							<img id="img_user_profile" class="img_user_profile" src="images/logo.png">	
+							<span id="span_user_nick" class="span_user_nick">파밍관리자</span>
+						</a>
+					</div>
+					<div class="box_comment_content">
+						<p id="p_text" class="p_text">앱을 업데이트 하시면 인건비를 등록하지 않아도 일지 등록이 가능합니다.</p>
+						
+						<div id="div_date" class="div_date">14일 전</div>
+						<div class="box_user_action">
+							<a id="button_emotion">좋아요</a>
+							<span id="span_emotion" class="span_emotion hidden">
+								| <img id="img_emotion" class="img_emotion" src="images/icon_like.png">
+								<span id="span_emotion_count" class="span_emotion_count">2</span>
+							</span>
+							|
+							<a id="button_reply">댓글 달기</a>
+						</div>
+						<div id="div_owner" class="div_owner">
+							<button id="button_menu" type="button"><i class="fa fa-ellipsis-v"></i><span class="sound_only">메뉴</span></button>
+						</div>
+						<form id="form_reply" class="form_reply hidden1">
+							<!-- 댓글의 댓글(답글)을 입력하기 위한 폼 -->
+							<div class="box_inp">
+								<input type="text" id="input_reply" placeholder="댓글을 입력하세요" class="input_reply inp_com inp_txt inp_100 inp_comment"/>
+							</div>
+							<div class="box_submit btn_wrap clear">
+								<button type="submit" class="btn_com btn_type01 btn_100">게시</button>
+							</div>
+						</form>
+					</div>
+				</li>
+				
+			</ul>
+		</li>
+	</ul>
+</section>
+
+<!-- 메인 -->
+<div id="div_left_menu_container" class="hidden">
+	<div>
+		<button id="button_close_menu" type="button">
+			<span class="icon_menu">
+				<i class="fa fa-arrow-left"></i>
+			</span>
+			<span class="sound_only">닫기</span>
+		</button>
+	</div>
+	<ul>
+		<li menu_id="profile" class="clear">
+			<span class="icon_menu">
+				<i class="fa fa-address-book-o"></i>
+			</span>
+			<span class="txt_menu">프로필</span>
+		</li>
+		<li menu_id="point" class="clear">
+			<span class="icon_menu">
+				<i class="fa fa-diamond"></i>
+			</span>
+			<span class="txt_menu">포인트</span>
+		</li>
+		<li menu_id="farms" class="clear">
+			<span class="icon_menu">
+				<i class="fa fa-home"></i>
+			</span>
+			<span class="txt_menu">농장</span>
+		</li>
+		<li menu_id="crops" class="clear">
+			<span class="icon_menu">
+				<i class="fa fa-leaf"></i>
+			</span>
+			<span class="txt_menu">작물</span>
+		</li>
+		<li menu_id="materials" class="clear">
+			<span class="icon_menu">
+				<i class="fa fa-cubes"></i>
+			</span>
+			<span class="txt_menu">자재</span>
+		</li>
+		<li menu_id="notifications" class="clear">
+			<span class="icon_menu">
+				<i class="fa fa-bell"></i>
+			</span>
+			<span class="txt_menu">알림</span>
+		</li>
+		<li menu_id="print" class="clear">
+			<span class="icon_menu">
+				<i class="fa fa-print"></i>
+			</span>
+			<span class="txt_menu">인쇄하기</span>
+		</li>
+		<li menu_id="share" class="clear">
+			<span class="icon_menu">
+				<i class="fa fa-share"></i>
+			</span>
+			<span class="txt_menu">일지 전달하기</span>
+		</li>
+		<li menu_id="invite" class="clear">
+			<span class="icon_menu">
+				<i class="fa fa-user-plus"></i>
+			</span>
+			<span class="txt_menu">친구 초대</span>
+		</li>
+		<li menu_id="cs" class="clear">
+			<span class="icon_menu">
+				<i class="fa fa-question-circle"></i>
+			</span>
+			<span class="txt_menu">고객센터</span>
+		</li>
+		<li menu_id="logout" class="clear">
+			<span class="icon_menu">
+				<i class="fa fa-sign-out"></i>		
+			</span>
+			<span class="txt_menu">로그아웃</span>
+		</li>
+	</ul>
+</div>
+
+<!-- 프로필 -->
+<section class="container box_profile hidden">
+	<form id="form_profile">
+		<!-- <div>
+			<button id="button_profile_image" type="button">
+				<img id="img_profile_image" class="img_thumbnail">
+			</button>
+			<input type="file" id="input_file" accept="image/*" class="hidden">
+		</div> -->
+		<div class="box_user_pic">
+			<button id="button_profile_image" type="button">
+				<img id="img_profile_image" class="img_thumbnail" src="images/farming_logo.png">
+			</button>
+			<input type="file" id="input_file" accept="image/*" class="hidden">
+		</div>
+		<ul>
+			<li class="box_def">
+				<label>
+					<span class="lb_title">
+						<span>
+							<i class="fa fa-id-card-o"></i>
+						</span>
+						이름
+					</span>
+					<span class="box_def_content">
+						<input type="text" id="input_name" maxlength="20" class="inp_com inp_txt inp_100">
+					</span>
+				</label>
+			</li>
+			<li class="box_def">
+				<label>
+					<span class="lb_title">
+						<span>
+							<i class="fa fa-hashtag"></i>
+						</span>
+						닉네임 *
+					</span>
+					<span class="box_def_content">
+						<input type="text" id="input_nick" maxlength="20" class="inp_com inp_txt inp_100">
+					</span>
+				</label>
+			</li>
+			<li class="box_def">
+				<label>
+					<span class="lb_title">
+						<span>
+							<i class="fa fa-home"></i>
+						</span>
+						농장이름
+					</span>
+					<span class="box_def_content">
+						<input type="text" id="input_farm_name" maxlength="50" class="inp_com inp_txt inp_100">
+					</span>
+				</label>
+			</li>
+			<li class="box_def">
+				<label>
+					<span class="lb_title">
+						<span>
+							<i class="fa fa-envelope-o"></i>
+						</span>
+						이메일
+					</span>
+					<span class="box_def_content">
+						<button id="button_email" type="button" class="btn_com btn_type02 btn_100">sadistic0421@gmail.com</button>
+						<div id="div_email_auth_info" class="hidden1">
+							<p>
+								현재 등록된 이메일은 <b>아직 인증되지 않았습니다.</b><br>
+								이메일에 도착된 파밍노트 인증 메일을 확인해주시기 바랍니다.<br>
+								인증 메일을 다시 받으시려면 아래의 버튼을 클릭해주십시오.
+							</p>
+							<button id="button_request_email_auth" type="button" class="btn_com btn_type01 btn_50">인증메일 다시 받기</button>
+						</div>
+					</span>
+				</label>
+			</li>
+		</ul>
+		<div class="btn_wrap">
+			<button type="submit" class="btn_com btn_type01 btn_100">완료</button>
+		</div>
+	</form>
+
+	<div id="div_email_dialog">
+		<!-- div_email_dialog는 dialog에 사용될 element이다. 페이지를 구성하지는 않고 제거됨 -->
+		<input id="input_email" type="text" size="10" class="inp_com inp_txt inp_100" placeholder="이메일 주소를 입력해주십시오.">
+	</div>
+</section>
+
+<!-- 포인트 -->
+<section class="container box_point hidden">
+	<table class="tbl_summary">
+		<caption class="sound_only">잔여 포인트</caption>
+		<tbody>
+			<tr>
+				<td>잔여 포인트</td>
+				<td></td>
+				<td>
+					<span id="span_total_point" class="txt_red"></span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<table>
+		<caption class="sound_only">포인트 증감 내역</caption>
+		<thead>
+			<tr>
+				<th>일시</th>
+				<th>활동</th>
+				<th>획득 포인트</th>
+			</tr>
+		</thead>
+		<tbody id="tbody">
+			
+		<tr item_template="item">
+				<td>2017.05.04</td>
+				<td>로그인</td>
+				<td>30</td>
+			</tr><tr item_template="item">
+				<td>2017.04.29</td>
+				<td>로그인</td>
+				<td class="point_var">30</td>
+			</tr><tr item_template="item">
+				<td>2017.04.22</td>
+				<td>비공개 일지 작성</td>
+				<td class="point_var">-200</td>
+			</tr><tr item_template="item">
+				<td>2017.04.22</td>
+				<td>공개 일지 작성</td>
+				<td>200</td>
+			</tr><tr item_template="item">
+				<td>2017.04.22</td>
+				<td>로그인</td>
+				<td>30</td>
+			</tr><tr item_template="item">
+				<td>2017.04.21</td>
+				<td>로그인</td>
+				<td>30</td>
+			</tr><tr item_template="item">
+				<td>2017.04.15</td>
+				<td>로그인</td>
+				<td>30</td>
+			</tr><tr item_template="item">
+				<td>2017.04.08</td>
+				<td>로그인</td>
+				<td>30</td>
+			</tr><tr item_template="item">
+				<td>1970.01.01</td>
+				<td>회원가입</td>
+				<td>2,000</td>
+			</tr></tbody>
+	</table>
+</section>
+
+<!-- 포인트 획득방법 -->
+<section class="container box_point box_point_increase hidden">
+	<table>
+		<thead>
+			<tr>
+				<th>활동</th>
+				<th colspan="2">획득 포인트</th>
+			</tr>
+		</thead>
+		<tbody id="tbody">
+			<tr item_template="item">
+				<td>:type</td>
+				<td class="td_point">:point</td>
+				<td class="td_button">
+					<button id="button" class="btn_com btn_type01"></button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</section>
+
+<!-- 알림 -->
+<section class="container box_alert hidden">
+	<ul id="ul_notification">
+		<li item_template="item" class="clear">
+			<img id="img_user_profile" class="img_user_profile">
+			<div>
+				<p id="p_text"></p>
+				<span id="span_date"></span>
+			</div>
+		</li>
+	</ul>
+	<div id="div_no_notification" class="hidden">
+		<p>알림이 없습니다.</p>
+	</div>
+</section>
+
+<!-- 일지 전달하기 -->
+<section class="container box_diary_share hidden">
+	<div class="box_diary_onoff clear">
+		<label for="input_share">영농일지 공유 허가 여부</label>	
+		<div class="box_inp_chk clear">
+			<label class="lb_switcher">
+				<span id="span_share_status">안함<!-- 허가 또는 안함 --></span>
+				<input type="checkbox" id="input_share">
+				<i></i>
+			</label>
+		</div>
+	</div>
+	<p class="box_diary_share_txt">
+		영농일지 공유 허가를 <span class="txt_red">[안함]</span>으로 설정한 경우, 전달된 링크에서 내 영농일지를 상대방이 볼 수 없습니다.
+	</p>
+	<p>
+		아래 링크를 상대방에게 전달하면 내 영농일지가 공유됩니다.
+	</p>
+	<a id="a_url" target="_blank" class="txt_blue">www.farmingnote.com/?v2_test/?farming_notecleldskladklsakdlsadisoajdiosqjkldwqjdlksjalkdjslak</a>
+	<div class="btn_wrap">
+		<button id="button_copy" type="button" class="btn_com btn_type01 btn_100">복사하기</button>
+	</div>
+</section>
+
+<!-- 초대하기 -->
+<section class="container box_invite hidden">
+	<p id="p_info">
+		<!-- 안내 문구 -->
+		아래 링크를 초대할 친구에게 전달하세요. 친구가 링크를 클릭해서 파밍노트에 가입할 경우, 2000포인트를 드립니다.
+	</p>
+	<a id="a_url" target="_blank" class="txt_blue">http://farmingnote.co.kr/install_ref_user?4140</a>
+	<div class="btn_wrap">
+		<button id="button_copy" type="button" class="btn_com btn_type01 btn_100">복사하기</button>
+	</div>
+</section>
+
+<!-- 커뮤니티 리스트 -->
+<section class="container box_community box_community_list hidden">
+	<ul id="ul_community" class="ul_community">
+		<li item_template="item">
+			<include src="community_post_item" />
+		</li>
+	</ul>
+	<button id="button_new" type="button">
+		<!-- button style은 임시 -->
+		<i class="fa fa-plus-circle"><span class="sound_only">새 항목</span></i>
+	</button>
+</section>
+
+<!-- 커뮤니티 글쓰기 -->
+<section class="container box_community_write hidden">
+	<div id="div_community_type">
+		<select id="select_community_type"></select>
+	</div>
+	<div>
+		<label>
+			제목
+			<input id="input_title" type="text" maxlength="70" placeholder="제목을 입력하세요." class="inp_com inp_txt inp_100ㅁㅁㅁㅁ">
+		</label>
+	</div>
+	<include src="diary_content_memo" />
+	<include src="diary_content_image_attach" />
+	<div class="btn_wrap">
+		<button type="button" id="button_submit" class="btn_com btn_type01 btn_100">완료</button>
+	</div>
+</section>
+
+<!-- 자재 리스트 -->
+<section class="container box_material_list hidden">
+	<div class="box_sch">
+		<ul id="ul_material" class="ul_sch">
+			<li item_template="item">
+				<span class="li_sch clear">
+					<div class="li_material_name">
+						<span>:brand</span>
+						<span id="span_material_category_purpose">
+							:materialPurpose(:materialCategory)
+						</span>
+						<span id="span_manufacturer">
+							:manufacturer
+						</span>	
+					</div>
+					<div class="li_material_btn clear">
+						<button type="button" id="button_detail" class="button_detail btn_com btn_type02">상세내용</button>
+						<button type="button" id="button_menu" class="button_menu">
+							<i class="fa fa-ellipsis-v"></i>
+						</button>
+					</div>
+				</span>
+				<div id="div_detail" class="div_detail clear hidden">
+					<dl id="dl_detail" class="dl_detail clear"><dt>자재의 구분</dt>
+						<dd>토양개량 및 작물생육</dd>
+						<dt>상표명</dt>
+						<dd>목재</dd>
+						<dt>가격</dt>
+						<dd>50000</dd>
+						<dt>제조업체명</dt>
+						<dd>대림</dd>
+					</dl>
+				</div>
+			</li>
+		</ul>
+	</div>
+</section>
+
+<!-- 자재 등록 -->
+<section class="container box_add_material hidden">
+	<form id="form_material">
+		<ul>
+			<li class="box_def">
+				<label>
+					<span class="lb_title">
+						<span>
+							<i class="fa fa-question-circle"></i>
+						</span>
+						자재 구분
+					</span>
+					<span class="box_def_content">
+						<div>
+							<select id="select_material_category" class="sel_100"></select>
+						</div>
+						<div>
+							<select id="select_material_purpose" class="sel_100"></select>
+						</div>
+					</span>
+				</label>
+			</li>
+			<li class="box_def">
+				<label>
+					<span class="lb_title">
+						<span>
+							<i class="fa fa-terminal"></i>
+						</span>
+						자재명
+					</span>
+					<span class="box_def_content">
+						<input type="text" id="input_brand" maxlength="100" class="inp_com inp_txt inp_100" required>
+					</span>
+				</label>
+			</li>
+			<li class="box_def">
+				<label>
+					<span class="lb_title">
+						<span>
+							<i class="fa fa-tag"></i>
+						</span>
+						제조업체명
+					</span>
+					<span class="box_def_content">
+						<input type="text" id="input_manufacturer" maxlength="100" class="inp_com inp_txt inp_100">
+					</span>
+				</label>
+			</li>
+			<li class="box_def">
+				<label>
+					<span class="lb_title">
+						<span>
+							<i class="fa fa-won"></i>
+						</span>
+						가격
+					</span>
+					<span class="box_def_content">
+						<input type="text" id="input_price" maxlength="100" class="inp_com inp_txt inp_100">
+					</span>
+				</label>
+			</li>
+		</ul>
+		<div class="btn_wrap">
+			<button type="submit" class="btn_com btn_type01 btn_100">완료</button>
+		</div>
+	</form>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<section class="container box_my_diary_list">
+	<div id="div_filter">
+		<div class="clear">
+			<button type="button" id="button_select_farm">농장 선택</button>
+			<button type="button" id="button_select_crop">작물 선택</button>
+			<button type="button" id="button_select_type">활동 선택</button>
+			<button type="button" id="button_calendar">달력 보기</button>
+		</div>
+		<ul id="ul_selected_filter_items" class="clear">
+			<li item_template="item">:name <i class="fa fa-close"></i></li>
+		</ul>
+	</div>
+	<div id="div_diary_list_header">
+		<!-- 일지 목록의 header, 특정 사용자의 일지 목록을 볼 때, 이곳에 사용자의 profile이 표시됨 -->
+	</div>
+	<div id="div_date_range" class="div_date_range clear" class="hidden">
+		<input id="button_date_range_start" type="text" size="10" maxlength="11" class="inp_com" placeholder="과거 날짜" readonly="readonly">
+		<span class="txt_unit">~</span>
+		<input id="button_date_range_end" type="text" size="10" maxlength="11" class="inp_com" placeholder="최근 날짜" readonly="readonly">
+		<select id="select_sort"></select>
+		<button id="button_filter_date_range" type="button" class="btn_com btn_type02">조회</button>
+	</div>
+	<ul id="ul_diary_list" class="ul_diary_list">
+		<li item_template="item" class="diary_list">
+			<include src="diary_item" />
+		</li>
+	</ul>
+</section>

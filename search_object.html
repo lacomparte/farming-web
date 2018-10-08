@@ -1,0 +1,54 @@
+<section class="container box_search_object">
+	<form id="form_search">
+		<fieldset>
+			<div class="box_inp">
+				<input type="text" id="input_keyword" placeholder="검색어 입력 후 검색버튼을 눌러주십시오." class="inp_com inp_100">	
+			</div>
+			<div class="btn_half clear">
+				<button type="submit" class="btn_com btn_type01 btn_50">검색</button>
+				<button type="button" id="button_recent" class="btn_com btn_type02 btn_50">최근 사용</button>
+			</div>
+		</fieldset>
+	</form>
+	<div class="box_sch">
+		<ul id="ul_results" class="ul_search_object ul_sch">
+			<li item_template="item">
+				<span class="li_sch clear">
+					<div class="li_object_name">
+						<span>:title</span>
+						<span class="span_material_category_purpose">: :subTitle</span>
+					</div>
+					<div class="li_object_btn btn_half clear">
+						<button type="button" id="button_detail" class="btn_com btn_type02 btn_50">상세내용</button>
+						<button type="button" id="button_select" class="btn_com btn_type01 btn_50">선택</button>	
+					</div>
+				</span>
+				<div id="div_detail" class="div_detail hidden">
+					<dl id="dl_detail" class="dl_detail clear"></dl>
+					<div class="gallery_images_wrap">
+						<div class="div_images_btn">
+							<button type="button" class="btn_prev">
+								<i class="fa fa-chevron-left"></i>
+								<span class="sound_only">이전</span>
+							</button>
+							<button type="button" class="btn_next">
+								<i class="fa fa-chevron-right"></i>
+								<span class="sound_only">다음</span>
+							</button>
+						</div>
+						<div class="gallery_images_rolling">
+							<div id="div_images" class="div_images" itemscope itemtype="http://schema.org/ImageGallery">
+								<figure item_template="item" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+									<a href=":imageUrl" itemprop="contentUrl" data-size=":imageSize">
+										<img id="img_thumbnail" itemprop="thumbnail" alt="" class="img_thumbnail" />
+									</a>
+									<figcaption itemprop="caption description" class="hidden">:caption</figcaption>
+								</figure>
+							</div>
+						</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+</section>

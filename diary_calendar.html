@@ -1,0 +1,23 @@
+<div id="div_diary_calendar">
+	<div class="box_calendar_header clear">
+		<div class="box_calendar_year clear">
+			<select id="select_year"></select><span class="sel_unit">년</span>
+			<select id="select_month"></select><span class="sel_unit">월</span>
+		</div>
+		<div class="box_calendar_btn clear btn_half">
+			<button id="button_prev" type="button" class="btn_com btn_50 btn_type01"><i class="fa fa-chevron-left"></i>이전 달</button>
+			<button id="button_next" type="button" class="btn_com btn_50 btn_type01">다음 달<i class="fa fa-chevron-right"></i></button>
+		</div>	
+	</div>
+	<ul id="ul_day_of_week" class="clear">
+		<li item_template="item">:dayOfWeek</li>
+	</ul>
+	<ul id="ul_dates" class="clear">
+		<li item_template="item">
+			<div>:date</div>
+			<ul id="ul_contents">
+				<li item_template="item">:content</li>
+			</ul>
+		</li>
+	</ul>
+</div>

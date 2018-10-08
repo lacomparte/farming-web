@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+</head>
+<script>
+function getOS() {
+	var userAgent = window.navigator.userAgent,
+	platform = window.navigator.platform,
+	macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'],
+	windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE'],
+	iosPlatforms = ['iPhone', 'iPad', 'iPod'],
+	os = null;
+
+	if (macosPlatforms.indexOf(platform) !== -1) {
+		os = 'Mac OS';
+	} else if (iosPlatforms.indexOf(platform) !== -1) {
+		os = 'iOS';
+	} else if (windowsPlatforms.indexOf(platform) !== -1) {
+		os = 'Windows';
+	} else if (/Android/.test(userAgent)) {
+		os = 'Android';
+	} else if (!os && /Linux/.test(platform)) {
+		os = 'Linux';
+	}
+
+	return os;
+}
+
+var os = getOS();
+var l = window.location.href;
+var qIdx = l.indexOf('?');
+var user = '';
+if(qIdx >= 0) user = l.substring(qIdx + 1);
+
+if(os == 'Android') {
+	var refString = 'user=' + user;
+	var url = 'https://play.google.com/store/apps/details?id=kr.co.farmingnote.android&referrer=' + encodeURIComponent(refString);
+	window.location.href = url;	
+} else {
+	if(os == 'iOS') {
+		// TODO
+	}
+	window.location.href = 'http://www.farmingnote.co.kr/?ref_user=' + user;
+}
+</script>
+</html

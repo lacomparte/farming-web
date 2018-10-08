@@ -1,0 +1,21 @@
+<section class="container box_home box_community_list">
+ 	<!-- 폼은 community_post_item.html에서 가져왔습니다. -->
+	
+	<!-- 홈탭 게시판 템플릿 -->
+	<include src="home_community_type_item" id="div_notice" />
+	<include src="home_community_type_item" id="div_community" />
+	<include src="home_community_type_item" id="div_faq" />
+	
+	<!-- 최근 일지 -->
+	<div id="div_diary" class="box_home_diary">
+		<h2 class="h_title_home">
+			최근 일지
+		</h2>
+		<button type="button" class="btn_more">더보기</button>
+		<ul id="ul_diary" class="ul_diary_list">
+			<li item_template="item" class="diary_list">
+				<include src="diary_item" />
+			</li>
+		</ul>
+	</div>
+</section>

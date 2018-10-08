@@ -1,0 +1,80 @@
+
+<section class="container box_date_weather hidden1">
+	<form id="form_date_weather">
+		<ul>
+			<li class="box_def">
+				<label>
+					<span class="lb_title">
+						<span>
+							<i class="fa fa-calendar-check-o"></i>
+						</span>
+						날짜
+					</span>
+					<span class="box_def_content">
+						<input type="text" id="input_date" size="8" maxlength="11" placeholder="날짜를 선택해주세요." class="inp_com inp_txt inp_100" readonly="readonly">
+					</span>
+				</label>
+			</li>
+			
+			<li class="box_def">
+				<label>
+					<span class="lb_title">
+						<span>
+							<i class="fa fa-thermometer-empty"></i>
+						</span>
+						최저기온
+					</span>
+					<span class="box_def_content">
+						<input type="text" id="input_min_temp" size="5" placeholder="최저기온을 입력해주세요. 예)-3" class="inp_com inp_txt inp_100" pattern_type="float">
+					</span>
+				</label>
+			</il>
+				
+			<li class="box_def">
+				<label>
+					<span class="lb_title">
+						<span>
+							<i class="fa fa-thermometer-full"></i>
+						</span>
+						최고기온
+					</span>
+					<span class="box_def_content">
+						<input type="text" id="input_max_temp" size="5" placeholder="최고기온을 입력해주세요. 예)30" class="inp_com inp_txt inp_100" pattern_type="float">
+					</span>
+				</label>
+			</li>
+			
+			<li class="box_def">
+				<label>
+					<span class="lb_title">
+						<span>
+							<i class="fa fa-tint"></i>
+						</span>
+						강수량
+					</span>
+					<span class="box_def_content">
+						<input type="text" id="input_precipitation" placeholder="강수량을 입력해주세요." class="inp_com inp_txt inp_100" pattern_type="float">
+					</span>
+				</label>
+			</li>
+
+			<li class="box_def">
+				<label>
+					<span class="lb_title">
+						<span>
+							<i class="fa fa-sun-o"></i>
+						</span>
+						날씨
+					</span>
+					<span class="box_def_content">
+						<input type="text" id="input_weather" placeholder="날씨를 입력해주세요. 예)구름낀뒤 맑음" class="inp_com inp_txt inp_100">
+					</span>
+				</label>
+			</li>
+		</ul>
+		<p id="p_selected_obs"></p>
+		<div class="btn_wrap">
+			<input id="button_submit" type="submit" value="다음" class="inp_b_com inp_type01 inp_100">	
+		</div>
+	</form>
+</section>
